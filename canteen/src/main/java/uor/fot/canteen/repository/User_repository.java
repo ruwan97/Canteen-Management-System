@@ -12,14 +12,20 @@ import java.util.List;
 @Repository
 public interface User_repository extends JpaRepository<User, String> {
 
-    @Transactional
-
     //insert user procedure
+    @Transactional
     @Procedure(procedureName = "ad_user_account_create_procedure")
     void usercreate(String user_id, String user_name, String user_email, String user_role);
 
-    //get all users
-    @Query(value = "SELECT u FROM User u")
-    List<User> getAllUsers();
+//    //get all users
+//    @Query(value = "SELECT u FROM User u")
+//    List<User> getAllUsers();
+
+    //delete user procedure
+    @Transactional
+    @Procedure(procedureName = "user_account_delete_procedure")
+    void userDelete(String user_id);
+
+    //update user procedure
 
 }
