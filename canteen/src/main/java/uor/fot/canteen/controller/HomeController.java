@@ -6,12 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HomeController {
     @RequestMapping("/")
     public String viewHomePage(Model model){
-        return "index";
+        return "home/index";
     }
 
-
-//    @RequestMapping("/userdash")
-//    public String viewUserDash(Model model){
-//        return "user/user_dashboard";
-//    }
 }
