@@ -12,4 +12,19 @@ public class HomeController {
         return "home/index";
     }
 
+    @RequestMapping("/home")
+    public String homePage(Model model){
+        return "home/index";
+    }
+
+    @RequestMapping("/home/login")
+    public String viewLoginPage(Model model){
+        return "home/login";
+    }
+
+    @RequestMapping("/home/register")
+    public String viewRegisterPage(Model model){
+        return "home/register";
+    }
+
 }

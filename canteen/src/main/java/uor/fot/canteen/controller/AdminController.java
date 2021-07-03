@@ -11,4 +11,6 @@ public class AdminController {
     public String viewAdminDash(Model model){
         return "admin/admin_dashboard";
     }
+
+
 }
