@@ -13,14 +13,14 @@ public class AdminController {
     }
 
     //user
-    @RequestMapping("/admindashboard/users/view")
+    @RequestMapping("/admindashboard/user/view")
     public String viewUsers(Model model){
         return "admin/users";
     }
 
     @RequestMapping("/admindashboard/user/add")
     public String viewUserAdd(Model model){
-        return "admin/user_create";
+        return "admin/user_add";
     }
 
     @RequestMapping("/admindashboard/user/update")
@@ -93,27 +93,27 @@ public class AdminController {
     }
 
     //logs
-    @RequestMapping("/admindashboard/logs/view/userlog")
+    @RequestMapping("/admindashboard/logs/userlog/view")
     public String viewUserLog(Model model){
         return "admin/user_log";
     }
 
-    @RequestMapping("/admindashboard/logs/view/oredrlog")
+    @RequestMapping("/admindashboard/logs/oredrlog/view")
     public String viewOrderLog(Model model){
         return "admin/order_log";
     }
 
-    @RequestMapping("/admindashboard/logs/view/itemlog")
+    @RequestMapping("/admindashboard/logs/itemlog/view")
     public String viewItemLog(Model model){
         return "admin/item_log";
     }
 
-    @RequestMapping("/admindashboard/logs/view/inventorylog")
+    @RequestMapping("/admindashboard/logs/inventorylog/view")
     public String viewInventoryLog(Model model){
         return "admin/inventory_log";
     }
 
-    @RequestMapping("/admindashboard/logs/view/transactionlog")
+    @RequestMapping("/admindashboard/logs/transactionlog/view")
     public String viewTransactionLog(Model model){
         return "admin/transaction_log";
     }

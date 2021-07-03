@@ -14,20 +14,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <link rel="apple-touch-icon" th:href="@{admin/apple-icon.png}">
-    <link rel="shortcut icon" th:href="@{admin/favicon.ico}">
+    <link rel="apple-touch-icon" th:href="@{/admin/apple-icon.png}">
+    <link rel="shortcut icon" th:href="@{/admin/favicon.ico}">
 
-    <link rel="stylesheet" th:href="@{admin/vendors/bootstrap/dist/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{admin/vendors/font-awesome/css/font-awesome.min.css}">
-    <link rel="stylesheet" th:href="@{admin/vendors/themify-icons/css/themify-icons.css}">
-    <link rel="stylesheet" th:href="@{admin/vendors/flag-icon-css/css/flag-icon.min.css}">
-    <link rel="stylesheet" th:href="@{admin/vendors/selectFX/css/cs-skin-elastic.css}">
-    <link rel="stylesheet" th:href="@{admin/vendors/jqvmap/dist/jqvmap.min.css}">
+    <link rel="stylesheet" th:href="@{/admin/vendors/bootstrap/dist/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/admin/vendors/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/admin/vendors/themify-icons/css/themify-icons.css}">
+    <link rel="stylesheet" th:href="@{/admin/vendors/flag-icon-css/css/flag-icon.min.css}">
+    <link rel="stylesheet" th:href="@{/admin/vendors/selectFX/css/cs-skin-elastic.css}">
+    <link rel="stylesheet" th:href="@{/admin/vendors/jqvmap/dist/jqvmap.min.css}">
 
 
-    <link rel="stylesheet" th:href="@{admin/assets/css/style.css}">
+    <link rel="stylesheet" th:href="@{/admin/assets/css/style.css}">
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    <link th:href='@{https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800}' rel='stylesheet' type='text/css'>
 
 </head>
 
@@ -56,48 +56,48 @@
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Manage Users</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-users"></i><a th:href="@{'/admindashboard/users/view'}">View Users</a></li>
-                        <li><i class="fa fa-user-plus"></i><a th:href="@{'/admindashboard/user/add'}">Add User</a></li>
-                        <li><i class="fa fa-edit"></i><a th:href="@{'/admindashboard/user/update'}">Update User</a></li>
+                        <li><i class="fa fa-users"></i><a th:href="@{'/admindashboard/user/view/'}">View Users</a></li>
+                        <li><i class="fa fa-user-plus"></i><a th:href="@{'/admindashboard/user/add/'}">Add User</a></li>
+                        <li><i class="fa fa-edit"></i><a th:href="@{'/admindashboard/user/update/'}">Update User</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-product-hunt"></i>Manage Items</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-product-hunt"></i><a th:href="@{'/admindashboard/items/view'}">View Items</a></li>
-                        <li><i class="fa fa-plus-square"></i><a th:href="@{'/admindashboard/item/add'}">Add Item</a></li>
-                        <li><i class="fa fa-edit"></i><a th:href="@{'/admindashboard/item/update'}">Update Item</a></li>
+                        <li><i class="fa fa-product-hunt"></i><a th:href="@{'/admindashboard/items/view/'}">View Items</a></li>
+                        <li><i class="fa fa-plus-square"></i><a th:href="@{'/admindashboard/item/add/'}">Add Item</a></li>
+                        <li><i class="fa fa-edit"></i><a th:href="@{'/admindashboard/item/update/'}">Update Item</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-stop"></i>Manage Inventory</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-table"></i><a th:href="@{'/admindashboard/inventory/view'}">View Inventory</a></li>
-                        <li><i class="fa fa-plus-square"></i><a th:href="@{'/admindashboard/inventory/add'}">Add Inventory</a></li>
-                        <li><i class="fa fa-edit"></i><a th:href="@{'/admindashboard/inventory/update'}">Update Inventory</a></li>
+                        <li><i class="fa fa-table"></i><a th:href="@{'/admindashboard/inventory/view/'}">View Inventory</a></li>
+                        <li><i class="fa fa-plus-square"></i><a th:href="@{'/admindashboard/inventory/add/'}">Add Inventory</a></li>
+                        <li><i class="fa fa-edit"></i><a th:href="@{'/admindashboard/inventory/update/'}">Update Inventory</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-first-order"></i>Orders</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-first-order"></i><a th:href="@{'/admindashboard/orders/view'}">View Orders</a></li>
+                        <li><i class="fa fa-first-order"></i><a th:href="@{'/admindashboard/orders/view/'}">View Orders</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-money"></i>Transactions</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-money"></i><a th:href="@{'/admindashboard/transaction/view'}">View Transactions</a></li>
-                        <li><i class="fa fa-money"></i><a th:href="@{'/admindashboard/transaction/viewsummary'}">Daily Transactions Summary</a></li>
+                        <li><i class="fa fa-money"></i><a th:href="@{'/admindashboard/transaction/view/'}">View Transactions</a></li>
+                        <li><i class="fa fa-money"></i><a th:href="@{'/admindashboard/transaction/viewsummary/'}">Daily Transactions Summary</a></li>
                     </ul>
                 </li>
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-money"></i>Logs</a>
                     <ul class="sub-menu children dropdown-menu">
-                        <li><i class="fa fa-users"></i><a th:href="@{'/admindashboard/logs/view/userlog'}">User Log</a></li>
-                        <li><i class="fa fa-first-order"></i><a th:href="@{'/admindashboard/logs/view/oredrlog'}">Order Log</a></li>
-                        <li><i class="fa fa-product-hunt"></i><a th:href="@{'/admindashboard/logs/view/itemlog'}">Item Log</a></li>
-                        <li><i class="fa fa-table"></i><a th:href="@{'/admindashboard/logs/view/inventorylog'}">Inventory Log</a></li>
-                        <li><i class="fa fa-money"></i><a th:href="@{'/admindashboard/logs/view/transactionlog'}">Transaction Log</a></li>
+                        <li><i class="fa fa-users"></i><a th:href="@{'/admindashboard/logs/userlog/view/'}">User Log</a></li>
+                        <li><i class="fa fa-first-order"></i><a th:href="@{'/admindashboard/logs/oredrlog/view/'}">Order Log</a></li>
+                        <li><i class="fa fa-product-hunt"></i><a th:href="@{'/admindashboard/logs/itemlog/view/'}">Item Log</a></li>
+                        <li><i class="fa fa-table"></i><a th:href="@{'/admindashboard/logs/inventorylog/view/'}">Inventory Log</a></li>
+                        <li><i class="fa fa-money"></i><a th:href="@{'/admindashboard/logs/transactionlog/view/'}">Transaction Log</a></li>
                     </ul>
                 </li>
             </ul>
@@ -571,18 +571,18 @@
 
 <!-- Right Panel -->
 
-<script th:src="@{admin/vendors/jquery/dist/jquery.min.js}"></script>
-<script th:src="@{admin/vendors/popper.js/dist/umd/popper.min.js}"></script>
-<script th:src="@{admin/vendors/bootstrap/dist/js/bootstrap.min.js}"></script>
-<script th:src="@{admin/assets/js/main.js}"></script>
+<script th:src="@{/admin/vendors/jquery/dist/jquery.min.js}"></script>
+<script th:src="@{/admin/vendors/popper.js/dist/umd/popper.min.js}"></script>
+<script th:src="@{/admin/vendors/bootstrap/dist/js/bootstrap.min.js}"></script>
+<script th:src="@{/admin/assets/js/main.js}"></script>
 
 
-<script th:src="@{Manager/vendors/chart.js/dist/Chart.bundle.min.js}"></script>
-<script th:src="@{Manager/assets/js/dashboard.js}"></script>
-<script th:src="@{Manager/assets/js/widgets.js}"></script>
-<script th:src="@{Manager/vendors/jqvmap/dist/jquery.vmap.min.js}"></script>
-<script th:src="@{Manager/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js}"></script>
-<script th:src="@{Manager/vendors/jqvmap/dist/maps/jquery.vmap.world.js}"></script>
+<script th:src="@{/admin/vendors/chart.js/dist/Chart.bundle.min.js}"></script>
+<script th:src="@{/admin/assets/js/dashboard.js}"></script>
+<script th:src="@{/admin/assets/js/widgets.js}"></script>
+<script th:src="@{/admin/vendors/jqvmap/dist/jquery.vmap.min.js}"></script>
+<script th:src="@{/admin/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js}"></script>
+<script th:src="@{/admin/vendors/jqvmap/dist/maps/jquery.vmap.world.js}"></script>
 <script>
     (function($) {
         "use strict";
