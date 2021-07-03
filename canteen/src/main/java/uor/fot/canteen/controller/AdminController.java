@@ -65,7 +65,7 @@ public class AdminController {
         return "admin/inventory_add";
     }
 
-    @RequestMapping("/login/admindashboard/inventory/update")
+    @RequestMapping("/home/login/admindashboard/inventory/update")
     public String viewInventoryUpdate(Model model){
         return "admin/inventory_update";
     }
