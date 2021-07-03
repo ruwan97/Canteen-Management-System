@@ -12,6 +12,7 @@ public class Item_log {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer log_id;
 
+    private String item_id;
     private String data;
     private String user;
     private String operation;
@@ -24,6 +25,14 @@ public class Item_log {
 
     public void setLog_id(Integer log_id) {
         this.log_id = log_id;
+    }
+
+    public String getItem_id() {
+        return item_id;
+    }
+
+    public void setItem_id(String item_id) {
+        this.item_id = item_id;
     }
 
     public String getData() {
