@@ -13,13 +13,13 @@ public class User_controller {
 
     //create user
     @PostMapping("/saveUser")
-    public String addUser(@RequestParam("u_id") String u_id, @RequestParam("u_name") String u_name, @RequestParam("u_email") String u_email, @RequestParam("u_role") String u_role)
+    public String addUser(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("password") String u_password, @RequestParam("role") String u_role, @RequestParam("contact") String u_contact, @RequestParam("image") String u_image)
     {
-        boolean result = user_service.addUser(u_id, u_name, u_email,u_role);
+        boolean result = user_service.addUser(u_id, u_name, u_email,u_password, u_role, u_contact, u_image);
         if (result)
-            return "redirect:/user?user_done";
+            return "redirect:/";
         else
-            return "redirect:/user?user_error";
+            return "redirect:/register";
     }
 
     //view user

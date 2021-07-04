@@ -14,8 +14,8 @@ public interface User_repository extends JpaRepository<User, String> {
 
     //insert user procedure
     @Transactional
-    @Procedure(procedureName = "ad_user_account_create_procedure")
-    void usercreate(String user_id, String user_name, String user_email, String user_role);
+    @Procedure(procedureName = "user_account_create_procedure")
+    void userCreate(String user_id, String user_name, String user_email, String user_password, String user_role, String user_contact, String user_image);
 
 //    //get all users
 //    @Query(value = "SELECT u FROM User u")

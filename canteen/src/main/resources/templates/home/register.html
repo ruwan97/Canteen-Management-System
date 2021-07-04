@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
 </head>
 <body>
 <center>
-    <form>
+    <form method="post" th:action="@{/saveUser}">
         <h1>Canteen Managemant System</h1>
         <br>
         <h2>Register Form</h2>
@@ -67,8 +67,7 @@
                 <td>User Role
                 </td>
                 <td>
-<!--                    <input type="select" value="" name="role" placeholder="Enter Role">-->
-                    <select id="">
+                    <select id="" name="role">
                         <option value="0">-- select --</option>
                         <option value="1">admin</option>
                         <option value="2">user</option>
