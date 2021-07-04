@@ -28,11 +28,11 @@ public class User_controller {
 
 
     //login user
-    @PostMapping("/signin")
+    @PostMapping("/login")
     public String login(@RequestParam("email") String u_email, @RequestParam("password") String U_password){
         User user = user_service.loginUser(u_email, U_password);
         if (Objects.nonNull(user)) {
-            String U_role = user.getUser_role();
+            Integer U_role = user.getUser_role();
             if (U_role.equals(1)) {
                 return "redirect:/admindashboard";
             }

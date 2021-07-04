@@ -11,7 +11,7 @@ public class User {
     private String user_name;
     private String user_email;
     private String user_password;
-    private String user_role;
+    private Integer user_role;
     private Integer user_contact;
     private String user_image;
 
@@ -48,11 +48,11 @@ public class User {
         this.user_password = user_password;
     }
 
-    public String getUser_role() {
+    public Integer getUser_role() {
         return user_role;
     }
 
-    public void setUser_role(String user_role) {
+    public void setUser_role(Integer user_role) {
         this.user_role = user_role;
     }
 
