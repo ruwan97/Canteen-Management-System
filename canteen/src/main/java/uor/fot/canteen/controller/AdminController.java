@@ -1,20 +1,33 @@
 package uor.fot.canteen.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import uor.fot.canteen.model.User;
+import uor.fot.canteen.service.User_service;
+
+import java.util.List;
 
 @Controller
 public class AdminController {
+
+    @Autowired
+    private User_service user_service;
 
     @RequestMapping("/admindashboard")
     public String viewAdminDash(Model model){
         return "admin/admin_dashboard";
     }
 
-    //user
+    //view users
     @RequestMapping("/admindashboard/user/view")
     public String viewUsers(Model model){
+        List<User> users = user_service.getAllUsers();
+        model.addAttribute("viewusers", users);
         return "admin/users";
     }
 
@@ -25,11 +38,15 @@ public class AdminController {
 
     @RequestMapping("/admindashboard/user/update")
     public String viewUserUpdate(Model model){
+        List<User> users = user_service.getAllUsers();
+        model.addAttribute("viewusers", users);
         return "admin/user_update";
     }
 
-    @RequestMapping("/admindashboard/user/updateform")
-    public String viewUserUpdateForm(Model model){
+    @RequestMapping("/admindashboard/user/updateform/{id}")
+    public String viewUserUpdateForm(Model model, @PathVariable("id") String u_id){
+        User user = user_service.getUsers(u_id);
+        model.addAttribute("updateuser", user);
         return "admin/user_update_form";
     }
 
@@ -120,9 +137,12 @@ public class AdminController {
 
 
 
-
-
-
+    //ad update user
+    @PostMapping("/userupdate")
+    public String adUpdateUsers(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("role") Integer u_role){
+        user_service.userUpdate(u_id, u_name, u_email, u_role);
+        return "redirect:/admindashboard/user/view";
+    }
 
 
 

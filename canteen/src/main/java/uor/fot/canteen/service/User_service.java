@@ -18,19 +18,29 @@ public class User_service {
     private User_repository user_repository;
 
     //create user
-    public boolean addUser(String u_id, String u_name, String u_email, String u_password, String u_role, String u_contact, String u_image){
+    public boolean addUser(String u_id, String u_name, String u_email, String u_password, Integer u_role, String u_contact, String u_image){
         user_repository.userCreate(u_id, u_name, u_email, u_password, u_role, u_contact, u_image);
         return true;
     }
 
     //login user
-    public User loginUser(String U_name, String U_password) {
-        return user_repository.availableUser(U_name, U_password);
+    public User loginUser(String u_email, String U_password) {
+        return user_repository.availableUser(u_email, U_password);
     }
 
-//    public List<User> getAllUsers(){
-//        return user_repository.getAllUsers();
-//    }
+    public List<User> getAllUsers(){
+        return user_repository.getAllUsers();
+    }
+
+    //update user
+    public void userUpdate(String u_id, String u_name, String U_email, Integer u_role){
+        user_repository.adUpdateUser(u_id, u_name, U_email, u_role);
+    }
+
+    //get user
+    public User getUsers(String u_id){
+        return user_repository.findById(u_id).get();
+    }
 
     //delete user
     public boolean deleteUser(String user_id){

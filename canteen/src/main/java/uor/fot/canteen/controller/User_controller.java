@@ -17,7 +17,7 @@ public class User_controller {
 
     //create user
     @PostMapping("/signup")
-    public String addUser(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("password") String u_password, @RequestParam("role") String u_role, @RequestParam("contact") String u_contact, @RequestParam("image") String u_image)
+    public String addUser(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("password") String u_password, @RequestParam("role") Integer u_role, @RequestParam("contact") String u_contact, @RequestParam("image") String u_image)
     {
         boolean result = user_service.addUser(u_id, u_name, u_email,u_password, u_role, u_contact, u_image);
         if (result)
@@ -28,12 +28,12 @@ public class User_controller {
 
 
     //login user
-    @PostMapping("/login")
+    @PostMapping("/signin")
     public String login(@RequestParam("email") String u_email, @RequestParam("password") String U_password){
         User user = user_service.loginUser(u_email, U_password);
         if (Objects.nonNull(user)) {
             Integer U_role = user.getUser_role();
-            if (U_role.equals(1)) {
+            if (U_role == 1 ) {
                 return "redirect:/admindashboard";
             }
             else {
@@ -49,10 +49,6 @@ public class User_controller {
     public String viewUserDashboard(Model model){
         return "user/user_dashboard";
     }
-
-
-    //view user
-
 
 
     //delete user
