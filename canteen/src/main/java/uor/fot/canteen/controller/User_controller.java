@@ -33,7 +33,7 @@ public class User_controller {
         User user = user_service.loginUser(u_email, U_password);
         if (Objects.nonNull(user)) {
             String U_role = user.getUser_role();
-            if (U_role.equals("1")) {
+            if (U_role.equals(1)) {
                 return "redirect:/admindashboard";
             }
             else {
