@@ -17,34 +17,36 @@ public class HomeController {
         return "home/index";
     }
 
-    @RequestMapping("/home/about")
+    @RequestMapping("/about")
     public String viewaAoutPage(Model model){
         return "home/about";
     }
 
-    @RequestMapping("/home/menu")
+    @RequestMapping("/menu")
     public String viewMenuPage(Model model){
         return "home/menu";
     }
 
-    @RequestMapping("/home/blog")
+    @RequestMapping("/blog")
     public String viewBlogPage(Model model){
         return "home/blog";
     }
 
-    @RequestMapping("/home/contact")
+    @RequestMapping("/contact")
     public String viewContactPage(Model model){
         return "home/contact";
     }
 
-    @RequestMapping("/home/login")
+    @RequestMapping("/login")
     public String viewLoginPage(Model model){
         return "home/login";
     }
 
-    @RequestMapping("/home/register")
+    @RequestMapping("/register")
     public String viewRegisterPage(Model model){
         return "home/register";
     }
+
+
 
 }

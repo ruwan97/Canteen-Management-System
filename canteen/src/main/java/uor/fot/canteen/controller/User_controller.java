@@ -2,8 +2,12 @@ package uor.fot.canteen.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import uor.fot.canteen.model.User;
 import uor.fot.canteen.service.User_service;
+
+import java.util.Objects;
 
 @Controller
 public class User_controller {
@@ -17,10 +21,35 @@ public class User_controller {
     {
         boolean result = user_service.addUser(u_id, u_name, u_email,u_password, u_role, u_contact, u_image);
         if (result)
-            return "redirect:/home/login";
+            return "redirect:/login";
         else
-            return "redirect:/home/register";
+            return "redirect:/register";
     }
+
+
+    //login user
+    @PostMapping("/signin")
+    public String login(@RequestParam("email") String u_email, @RequestParam("password") String U_password){
+        User user = user_service.loginUser(u_email, U_password);
+        if (Objects.nonNull(user)) {
+            String U_role = user.getUser_role();
+            if (U_role.equals("1")) {
+                return "redirect:/admindashboard";
+            }
+            else {
+                return "redirect:/userdashboard";
+            }
+        }
+        else {
+            return "redirect:/login";
+        }
+    }
+
+    @RequestMapping("/userdashboard")
+    public String viewUserDashboard(Model model){
+        return "user/user_dashboard";
+    }
+
 
     //view user
 

@@ -23,6 +23,11 @@ public class User_service {
         return true;
     }
 
+    //login user
+    public User loginUser(String U_name, String U_password) {
+        return user_repository.availableUser(U_name, U_password);
+    }
+
 //    public List<User> getAllUsers(){
 //        return user_repository.getAllUsers();
 //    }
