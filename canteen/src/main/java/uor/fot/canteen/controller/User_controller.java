@@ -41,7 +41,7 @@ public class User_controller {
             }
         }
         else {
-            return "redirect:/login";
+            return "redirect:login";
         }
     }
 
