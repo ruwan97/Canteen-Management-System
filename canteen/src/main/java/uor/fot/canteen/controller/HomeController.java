@@ -47,15 +47,4 @@ public class HomeController {
         return "home/register";
     }
 
-    //after login and register
-//    @RequestMapping("/home/signin")
-//    public String afterSignIn(Model model){
-//        return "redirect:/index";
-//    }
-//
-//    @RequestMapping("/home/signup")
-//    public String afterSignUp(Model model){
-//        return "redirect:/login";
-//    }
-
 }
