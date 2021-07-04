@@ -28,6 +28,7 @@ public class User_service {
         return user_repository.availableUser(u_email, U_password);
     }
 
+    //view all users
     public List<User> getAllUsers(){
         return user_repository.getAllUsers();
     }

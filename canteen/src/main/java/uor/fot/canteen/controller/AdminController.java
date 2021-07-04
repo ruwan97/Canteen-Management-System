@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import uor.fot.canteen.model.Item;
 import uor.fot.canteen.model.User;
+import uor.fot.canteen.service.Item_service;
 import uor.fot.canteen.service.User_service;
 
 import java.util.List;
@@ -17,13 +19,15 @@ public class AdminController {
 
     @Autowired
     private User_service user_service;
+    @Autowired
+    private Item_service item_service;
 
     @RequestMapping("/admindashboard")
     public String viewAdminDash(Model model){
         return "admin/admin_dashboard";
     }
 
-    //view users
+    //admin view users
     @RequestMapping("/admindashboard/user/view")
     public String viewUsers(Model model){
         List<User> users = user_service.getAllUsers();
@@ -43,6 +47,7 @@ public class AdminController {
         return "admin/user_update";
     }
 
+    //admin update user
     @RequestMapping("/admindashboard/user/updateform/{id}")
     public String viewUserUpdateForm(Model model, @PathVariable("id") String u_id){
         User user = user_service.getUsers(u_id);
@@ -50,9 +55,11 @@ public class AdminController {
         return "admin/user_update_form";
     }
 
-    //item
+    //admin view items
     @RequestMapping("/admindashboard/items/view")
     public String viewItems(Model model){
+        List<Item> items = item_service.getAllItems();
+        model.addAttribute("viewitems", items);
         return "admin/items";
     }
 
