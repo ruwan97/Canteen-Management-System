@@ -1,0 +1,39 @@
+alter table inventory
+add total_price float(2)
+after quantity;
+
+alter table item
+add item_image varchar(255)
+after item_price;
+
+alter table inventory
+drop column item_name,
+drop column unit_price;
+
+alter table transaction add foreign key (order_id) references orders (order_id);
+
+DROP TRIGGER TR_after_order_insert ;
+
+delete from transaction;
+
+ALTER TABLE orders RENAME total_amount TO total_price; 
+
+alter table item drop foreign key item_id;
+
+ALTER TABLE transaction MODIFY transaction_date date;
+
+ALTER TABLE transaction MODIFY transaction_date date AFTER order_amount;
+
+//cascade
+
+
+ALTER TABLE transaction
+drop Foreign KEY item_id;
+
+ALTER TABLE transaction
+ADD FOREIGN KEY (item_id)
+REFERENCES item(item_id)
+ON DELETE CASCADE ON UPDATE NO ACTION;
+
+
+SET GLOBAL event_scheduler="ON"
