@@ -61,22 +61,22 @@ public class User_controller {
     }
 
 
-    //update user
+    @RequestMapping("/userdashboard/order/view")
+    public String viewUserOrders(Model model){
+        return "user/user_view_orders";
+    }
+    //user update profile
 
 
-//    public String UserVeiwOrders(Model model , @PathVariable "id" String user_id){
-//        User user=user_service.getUser(user_id);
-//    }
 
-
-    //admin view items
+    //user view items
     @RequestMapping("/userdashboard/items/view")
     public String viewItems(Model model){
         List<Item> items = item_service.getAllItems();
 //        List<Inventory> inventories = inventory_service.getAllInventoryItems();
         model.addAttribute("viewitems", items);
 //        model.addAttribute("viewitems", inventories);
-        return "user/user_items";
+        return "user/user_view_items";
     }
 
     //user order add form
@@ -84,7 +84,7 @@ public class User_controller {
     public String viewItemUpdateForm(Model model, @PathVariable("id") String item_id){
         Item item = item_service.getItem(item_id);
         model.addAttribute("viewitems", item);
-        return "user/user_order_add";
+        return "user/user_add_order";
     }
 
     //user add order
@@ -95,7 +95,7 @@ public class User_controller {
         if (result)
             return "redirect:/userdashboard";
         else
-            return "user/user_order_add";
+            return "user/user_add_order";
     }
 
 
