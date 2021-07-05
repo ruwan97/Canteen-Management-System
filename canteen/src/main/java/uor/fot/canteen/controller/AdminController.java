@@ -56,13 +56,7 @@ public class AdminController {
             return "redirect:/admindashboard/user/view";
     }
 
-
-    @RequestMapping("/admindashboard/user/add")
-    public String viewUserAdd(Model model){
-        return "admin/user_add";
-    }
-
-    //update view
+    //admin update uesr view
     @RequestMapping("/admindashboard/user/update")
     public String viewUserUpdate(Model model){
         List<User> users = user_service.getAllUsers();
@@ -86,6 +80,17 @@ public class AdminController {
     }
 
 
+    //admin add item
+    @RequestMapping("/admindashboard/item/add")
+    public String addItem(@RequestParam("id") String item_id, @RequestParam("name") String item_name, @RequestParam("price") Float unit_price, @RequestParam("image") String item_image)
+    {
+        boolean result = item_service.addItem(item_id, item_name, unit_price, item_image);
+        if (result)
+            return "redirect:/admindashboard/items/view";
+        else
+            return "redirect:/admindashboard/item/add";
+    }
+
     //admin view items
     @RequestMapping("/admindashboard/items/view")
     public String viewItems(Model model){
@@ -94,11 +99,6 @@ public class AdminController {
         model.addAttribute("viewitems", items);
 //        model.addAttribute("viewitems", inventories);
         return "admin/items";
-    }
-
-    @RequestMapping("/admindashboard/item/add")
-    public String viewItemAdd(Model model){
-        return "admin/item_add";
     }
 
     //admin item update view

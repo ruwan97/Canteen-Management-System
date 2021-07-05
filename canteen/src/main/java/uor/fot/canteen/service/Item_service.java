@@ -17,6 +17,12 @@ public class Item_service {
     @Autowired
     private Item_repository item_repository;
 
+    //admin add item
+    public boolean addItem(String item_id, String item_name, Float unit_price, String item_image){
+        item_repository.itemAdd(item_id, item_name, unit_price, item_image);
+        return true;
+    }
+
     //admin view all items
     public List<Item> getAllItems(){
         return item_repository.getAllItems();

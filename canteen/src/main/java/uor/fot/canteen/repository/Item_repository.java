@@ -14,6 +14,11 @@ import java.util.List;
 @Repository
 public interface Item_repository extends JpaRepository<Item, String> {
 
+    //admin add item
+    @Transactional
+    @Procedure(procedureName = "insert_item_procedure")
+    void itemAdd(String item_id, String item_name, Float item_price, String item_image);
+
     //admin view items
     @Query(value = "SELECT *FROM ad_view_items", nativeQuery = true)
     List<Item> getAllItems();
