@@ -76,13 +76,12 @@ public class User_controller {
 //        User user=user_service.getUser(user_id);
 //    }
 
-
     //admin view items
     @RequestMapping("/userdashboard/items/view")
     public String viewItems(Model model){
-        List<Item> items = item_service.getUserItems();
+        List<Item> items = item_service.getAllItems();
 //        List<Inventory> inventories = inventory_service.getAllInventoryItems();
-        model.addAttribute("viewUseritems", items);
+        model.addAttribute("viewitems", items);
 //        model.addAttribute("viewitems", inventories);
         return "user/user_items";
     }

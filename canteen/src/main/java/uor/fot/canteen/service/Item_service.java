@@ -38,10 +38,4 @@ public class Item_service {
         return item_repository.findById(item_id).get();
     }
 
-    //user view all items
-    public List<Item> getUserItems(){
-        return item_repository.getUserItems();
-    }
-
-
 }

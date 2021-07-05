@@ -117,7 +117,7 @@ public class AdminController {
         return "admin/item_update_form";
     }
 
-    //ad update item
+    //admin update item
     @PostMapping("/itemupdate")
     public String adUdpdateItems(@RequestParam("id") String item_id, @RequestParam("name") String item_name, @RequestParam("price") Float unit_price, @RequestParam("image") String item_image){
         item_service.adItemUpdate(item_id, item_name, unit_price, item_image);
