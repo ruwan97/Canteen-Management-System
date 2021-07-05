@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import uor.fot.canteen.model.Inventory;
 import uor.fot.canteen.model.Item;
 import uor.fot.canteen.model.User;
+import uor.fot.canteen.service.Inventory_service;
 import uor.fot.canteen.service.Item_service;
 import uor.fot.canteen.service.User_service;
 
@@ -21,6 +23,8 @@ public class AdminController {
     private User_service user_service;
     @Autowired
     private Item_service item_service;
+    @Autowired
+    private Inventory_service inventory_service;
 
     @RequestMapping("/admindashboard")
     public String viewAdminDash(Model model){
@@ -40,6 +44,7 @@ public class AdminController {
         return "admin/user_add";
     }
 
+    //update view
     @RequestMapping("/admindashboard/user/update")
     public String viewUserUpdate(Model model){
         List<User> users = user_service.getAllUsers();
@@ -47,7 +52,7 @@ public class AdminController {
         return "admin/user_update";
     }
 
-    //admin update user
+    //admin update view
     @RequestMapping("/admindashboard/user/updateform/{id}")
     public String viewUserUpdateForm(Model model, @PathVariable("id") String u_id){
         User user = user_service.getUser(u_id);
@@ -66,7 +71,9 @@ public class AdminController {
     @RequestMapping("/admindashboard/items/view")
     public String viewItems(Model model){
         List<Item> items = item_service.getAllItems();
+//        List<Inventory> inventories = inventory_service.getAllInventoryItems();
         model.addAttribute("viewitems", items);
+//        model.addAttribute("viewitems", inventories);
         return "admin/items";
     }
 
@@ -82,6 +89,7 @@ public class AdminController {
         return "admin/item_update";
     }
 
+    //update view
     @RequestMapping("/admindashboard/item/updateform/{id}")
     public String viewItemUpdateForm(Model model, @PathVariable("id") String item_id){
         Item item = item_service.getItem(item_id);
@@ -91,8 +99,8 @@ public class AdminController {
 
     //ad update item
     @PostMapping("/itemupdate")
-    public String adUdpdateItems(@RequestParam("id") String item_id, @RequestParam("name") String item_name, @RequestParam("price") Float unit_price){
-        item_service.adItemUpdate(item_id, item_name, unit_price);
+    public String adUdpdateItems(@RequestParam("id") String item_id, @RequestParam("name") String item_name, @RequestParam("price") Float unit_price, @RequestParam("image") String item_image){
+        item_service.adItemUpdate(item_id, item_name, unit_price, item_image);
         return "redirect:/admindashboard/items/view";
     }
 

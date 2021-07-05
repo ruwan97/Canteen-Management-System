@@ -269,7 +269,8 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>name</th>
+                                            <th>Image</th>
+                                            <th>Nome</th>
                                             <th>Email</th>
                                             <th>Role</th>
                                             <th>Contact</th>
@@ -279,6 +280,7 @@
                                     <tbody>
                                         <tr th:each="user:${viewusers}">
                                             <td th:text="${user.getUser_id()}"></td>
+                                            <td th:text="${user.getUser_image()}"></td>
                                             <td th:text="${user.getUser_name()}"></td>
                                             <td th:text="${user.getUser_email()}"></td>
                                             <td th:text="${user.getUser_role()}"></td>

@@ -267,16 +267,18 @@
                             <div class="card-body">
                                 <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
                                     <thead>
-                                        <tr>
-                                            <th>Id</th>
-                                            <th>Name</th>
-                                            <th>Price</th>
-                                            <th>Action</th>
-                                        </tr>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Image</th>
+                                        <th>Name</th>
+                                        <th>Unit Price</th>
+                                        <th>Action</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
                                     <tr th:each="item:${viewitems}">
                                         <td th:text="${item.getItem_id()}"></td>
+                                        <td th:text="${item.getItem_image()}"></td>
                                         <td th:text="${item.getItem_name()}"></td>
                                         <td th:text="${item.getUnit_price()}"></td>
                                             <td class="text-center" >

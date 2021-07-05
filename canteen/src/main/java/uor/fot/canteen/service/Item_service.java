@@ -2,6 +2,7 @@ package uor.fot.canteen.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uor.fot.canteen.model.Inventory;
 import uor.fot.canteen.model.Item;
 import uor.fot.canteen.model.User;
 import uor.fot.canteen.repository.Item_repository;
@@ -22,8 +23,8 @@ public class Item_service {
     }
 
     //update item
-    public void adItemUpdate(String item_id, String item_name, Float unit_price){
-        item_repository.adUpdateItem(item_id, item_name, unit_price);
+    public void adItemUpdate(String item_id, String item_name, Float unit_price, String item_image){
+        item_repository.adUpdateItem(item_id, item_name, unit_price, item_image);
     }
 
     //get item

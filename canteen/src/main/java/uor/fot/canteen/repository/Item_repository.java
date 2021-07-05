@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.stereotype.Repository;
+import uor.fot.canteen.model.Inventory;
 import uor.fot.canteen.model.Item;
 import uor.fot.canteen.model.User;
 
@@ -20,5 +21,5 @@ public interface Item_repository extends JpaRepository<Item, String> {
     //admin update item
     @Transactional
     @Procedure(procedureName = "update_item_procedure")
-    void adUpdateItem(String item_id, String item_name, Float unit_price);
+    void adUpdateItem(String item_id, String item_name, Float unit_price, String item_image);
 }
