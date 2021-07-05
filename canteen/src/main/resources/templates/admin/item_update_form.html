@@ -266,27 +266,27 @@
                                 <strong>Update Item</strong>
                             </div>
                             <div class="card-body card-block">
-                                <form action="" method="post" class="">
-                                    <div class="form-group"><label for="id" class=" form-control-label">Item Id</label><input type="text" id="id" name="id" placeholder="Enter Id.." class="form-control"></div>
+                                <form th:action="@{/itemupdate}" method="post" class="">
+                                    <div class="form-group"><label for="id" class=" form-control-label">Item Id</label><input type="text" id="id" name="id" th:value="${updateitem.getItem_id()}" class="form-control" readonly></div>
 
-                                    <div class="form-group"><label for="name" class=" form-control-label">Item Name</label><input type="text" id="name" name="name" placeholder="Enter Name.." class="form-control"></div>
+                                    <div class="form-group"><label for="name" class=" form-control-label">Item Name</label><input type="text" id="name" name="name" th:value="${updateitem.getItem_name()}" class="form-control"></div>
 
-                                    <div class="form-group"><label for="price" class=" form-control-label">Unit Price</label><input type="email" id="price" name="price" placeholder="Enter price.." class="form-control"></div>
+                                    <div class="form-group"><label for="price" class=" form-control-label">Unit Price</label><input type="text" id="number" name="price" th:value="${updateitem.getUnit_price()}" class="form-control"></div>
 
-                                    <div class="form-group">
-                                        <div class=""><label for="file-input" class=" form-control-label">Item Image</label></div>
-                                        <div class="form-group"><input type="file" id="file-input" name="file-input" class="form-control-file"></div>
-                                    </div>
-
+<!--                                    <div class="form-group">-->
+<!--                                        <div class=""><label for="file-input" class=" form-control-label">Item Image</label></div>-->
+<!--                                        <div class="form-group"><input type="file" id="file-input" name="file-input" class="form-control-file"></div>-->
+<!--                                    </div>-->
+                                    <button type="submit" class="btn btn-primary btn-sm">
+                                        <i class="fa fa-pencil"></i> Update
+                                    </button>
+                                    <button type="reset" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-ban"></i> Reset
+                                    </button>
                                 </form>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-pencil"></i> Update
-                                </button>
-                                <button type="reset" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-ban"></i> Reset
-                                </button>
+
                             </div>
                         </div>
                     </div>                                         

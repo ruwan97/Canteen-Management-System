@@ -50,9 +50,16 @@ public class AdminController {
     //admin update user
     @RequestMapping("/admindashboard/user/updateform/{id}")
     public String viewUserUpdateForm(Model model, @PathVariable("id") String u_id){
-        User user = user_service.getUsers(u_id);
+        User user = user_service.getUser(u_id);
         model.addAttribute("updateuser", user);
         return "admin/user_update_form";
+    }
+
+    //ad update user
+    @PostMapping("/userupdate")
+    public String adUpdateUsers(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("role") Integer u_role){
+        user_service.userUpdate(u_id, u_name, u_email, u_role);
+        return "redirect:/admindashboard/user/view";
     }
 
     //admin view items
@@ -70,13 +77,25 @@ public class AdminController {
 
     @RequestMapping("/admindashboard/item/update")
     public String viewItemUpdate(Model model){
+        List<Item> items = item_service.getAllItems();
+        model.addAttribute("viewitems", items);
         return "admin/item_update";
     }
 
-    @RequestMapping("/admindashboard/item/updateform")
-    public String viewItemUpdateForm(Model model){
+    @RequestMapping("/admindashboard/item/updateform/{id}")
+    public String viewItemUpdateForm(Model model, @PathVariable("id") String item_id){
+        Item item = item_service.getItem(item_id);
+        model.addAttribute("updateitem", item);
         return "admin/item_update_form";
     }
+
+    //ad update item
+    @PostMapping("/itemupdate")
+    public String adUdpdateUsers(@RequestParam("id") String item_id, @RequestParam("name") String item_name, @RequestParam("price") Float unit_price){
+        item_service.itemUpdate(item_id, item_name, unit_price);
+        return "redirect:/admin/items";
+    }
+
 
     //inventory
     @RequestMapping("/admindashboard/inventory/view")
@@ -144,12 +163,7 @@ public class AdminController {
 
 
 
-    //ad update user
-    @PostMapping("/userupdate")
-    public String adUpdateUsers(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("role") Integer u_role){
-        user_service.userUpdate(u_id, u_name, u_email, u_role);
-        return "redirect:/admindashboard/user/view";
-    }
+
 
 
 

@@ -16,8 +16,18 @@ public class Item_service {
     @Autowired
     private Item_repository item_repository;
 
-    //view all users
+    //view all items
     public List<Item> getAllItems(){
         return item_repository.getAllItems();
+    }
+
+    //update item
+    public void itemUpdate(String item_id, String item_name, Float unit_price){
+        item_repository.adUpdateItem(item_id, item_name, unit_price);
+    }
+
+    //get item
+    public Item getItem(String item_id){
+        return item_repository.findById(item_id).get();
     }
 }

@@ -39,7 +39,7 @@ public class User_service {
     }
 
     //get user
-    public User getUsers(String u_id){
+    public User getUser(String u_id){
         return user_repository.findById(u_id).get();
     }
 

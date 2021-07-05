@@ -269,25 +269,19 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Image</th>
                                             <th>Name</th>
                                             <th>Price</th>
-                                            <th>quantity</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>
-                                                <img src="" height="50px" width="50px" alt="user Image" class="rounded">
-                                            </td>
-                                            <td>Edinburgh</td>
-                                            <td>$320,800</td>
-                                            <td>System Architect</td>
+                                    <tr th:each="item:${viewitems}">
+                                        <td th:text="${item.getItem_id()}"></td>
+                                        <td th:text="${item.getItem_name()}"></td>
+                                        <td th:text="${item.getUnit_price()}"></td>
                                             <td class="text-center" >
                                                     <form action="" method="post">
-                                                        <a th:href="@{'/homelogin/admindashboard/item/updateform'}" class="btn btn-success btn-sm rounded">
+                                                        <a th:href="@{/admindashboard/item/updateform/{id}(id = ${item.getItem_id()})}" class="btn btn-success btn-sm rounded">
                                                             <i class="fa fa-pencil"> Update</i>
                                                         </a>
                                                     </form>

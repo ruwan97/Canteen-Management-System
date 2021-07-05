@@ -273,7 +273,7 @@
 
                                     <div class="form-group"><label for="email" class=" form-control-label">User Email</label><input type="email" id="email" name="email" th:value="${updateuser.getUser_email()}" class="form-control"></div>
 
-                                    <div class="form-group"><label for="role" class=" form-control-label">User Role</label><input type="text" id="role" name="role" th:value="${updateuser.getUser_role()}" class="form-control"></div>
+                                    <div class="form-group"><label for="role" class=" form-control-label">User Role</label><input type="text" id="role" name="role" th:value="${updateuser.getUser_role()}" class="form-control" readonly></div>
 
                                     <button type="submit" class="btn btn-primary btn-sm">
                                         <i class="fa fa-pencil"></i> Update
