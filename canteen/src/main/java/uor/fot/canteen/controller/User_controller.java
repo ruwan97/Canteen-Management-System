@@ -51,15 +51,15 @@ public class User_controller {
     }
 
 
-    //delete user
-    @RequestMapping("/deleteUser/{user_id}")
-    public String deleteUser(@PathVariable("user_id") String user_id){
-        boolean result = user_service.deleteUser(user_id);
-        if (result)
-            return "redirect:/user?user_delete_done";
-        else
-            return "redirect:/user?user_delete_error";
-    }
+//    //delete user
+//    @RequestMapping("/deleteUser/{user_id}")
+//    public String deleteUser(@PathVariable("user_id") String user_id){
+//        boolean result = user_service.deleteUser(user_id);
+//        if (result)
+//            return "redirect:/user?user_delete_done";
+//        else
+//            return "redirect:/user?user_delete_error";
+//    }
 
     //update user
 

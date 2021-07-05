@@ -7,10 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import uor.fot.canteen.model.Inventory;
 import uor.fot.canteen.model.Item;
 import uor.fot.canteen.model.User;
-import uor.fot.canteen.service.Inventory_service;
 import uor.fot.canteen.service.Item_service;
 import uor.fot.canteen.service.User_service;
 
@@ -23,8 +21,6 @@ public class AdminController {
     private User_service user_service;
     @Autowired
     private Item_service item_service;
-    @Autowired
-    private Inventory_service inventory_service;
 
     @RequestMapping("/admindashboard")
     public String viewAdminDash(Model model){
@@ -39,6 +35,17 @@ public class AdminController {
         return "admin/users";
     }
 
+    //admin delete user
+    @RequestMapping("/admindashboard/user/delete/{id}")
+    public String deleteUser(@PathVariable("id") String user_id){
+        boolean result = user_service.deleteUser(user_id);
+        if (result)
+            return "redirect:/admindashboard/user/view";
+        else
+            return "redirect:/admindashboard/user/view";
+    }
+
+
     @RequestMapping("/admindashboard/user/add")
     public String viewUserAdd(Model model){
         return "admin/user_add";
@@ -52,7 +59,7 @@ public class AdminController {
         return "admin/user_update";
     }
 
-    //admin update view
+    //admin user update form
     @RequestMapping("/admindashboard/user/updateform/{id}")
     public String viewUserUpdateForm(Model model, @PathVariable("id") String u_id){
         User user = user_service.getUser(u_id);
@@ -60,12 +67,13 @@ public class AdminController {
         return "admin/user_update_form";
     }
 
-    //ad update user
+    //admin update user
     @PostMapping("/userupdate")
     public String adUpdateUsers(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("role") Integer u_role){
         user_service.userUpdate(u_id, u_name, u_email, u_role);
         return "redirect:/admindashboard/user/view";
     }
+
 
     //admin view items
     @RequestMapping("/admindashboard/items/view")
@@ -82,6 +90,7 @@ public class AdminController {
         return "admin/item_add";
     }
 
+    //admin item update view
     @RequestMapping("/admindashboard/item/update")
     public String viewItemUpdate(Model model){
         List<Item> items = item_service.getAllItems();
@@ -89,7 +98,7 @@ public class AdminController {
         return "admin/item_update";
     }
 
-    //update view
+    //admin item update form
     @RequestMapping("/admindashboard/item/updateform/{id}")
     public String viewItemUpdateForm(Model model, @PathVariable("id") String item_id){
         Item item = item_service.getItem(item_id);
