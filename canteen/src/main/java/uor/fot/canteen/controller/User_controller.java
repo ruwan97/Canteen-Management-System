@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import uor.fot.canteen.model.Item;
 import uor.fot.canteen.model.User;
 import uor.fot.canteen.service.Item_service;
+import uor.fot.canteen.service.Orders_service;
 import uor.fot.canteen.service.User_service;
 
 import java.util.List;
@@ -20,6 +21,9 @@ public class User_controller {
 
     @Autowired
     private Item_service item_service;
+
+    @Autowired
+    private Orders_service orders_service;
 
     //register user
     @PostMapping("/signup")
@@ -57,24 +61,13 @@ public class User_controller {
     }
 
 
-//    //delete user
-//    @RequestMapping("/deleteUser/{user_id}")
-//    public String deleteUser(@PathVariable("user_id") String user_id){
-//        boolean result = user_service.deleteUser(user_id);
-//        if (result)
-//            return "redirect:/user?user_delete_done";
-//        else
-//            return "redirect:/user?user_delete_error";
-//    }
-
     //update user
 
 
-
-//
 //    public String UserVeiwOrders(Model model , @PathVariable "id" String user_id){
 //        User user=user_service.getUser(user_id);
 //    }
+
 
     //admin view items
     @RequestMapping("/userdashboard/items/view")
@@ -85,4 +78,25 @@ public class User_controller {
 //        model.addAttribute("viewitems", inventories);
         return "user/user_items";
     }
+
+    //user order add form
+    @RequestMapping("/userdashboard/order/add/{id}")
+    public String viewItemUpdateForm(Model model, @PathVariable("id") String item_id){
+        Item item = item_service.getItem(item_id);
+        model.addAttribute("viewitems", item);
+        return "user/user_order_add";
+    }
+
+    //user add order
+    @PostMapping("/addOrder")
+    public String adOrder(@RequestParam("u_id") String user_id, @RequestParam("item_id") String item_id, @RequestParam("quantiry") Integer quantity)
+    {
+        boolean result = orders_service.addOrder(user_id, item_id,quantity);
+        if (result)
+            return "redirect:/userdashboard";
+        else
+            return "user/user_order_add";
+    }
+
+
 }

@@ -285,8 +285,8 @@
 <!--                                        <td th:text="${item.getQuantity()}"></td>-->
                                         <td class="text-center" >
                                             <form action="" method="post">
-                                                <a href="" class="btn btn-danger btn-sm rounded">
-                                                    <i class="fa fa-trash"> Confirm</i>
+                                                <a th:href="@{/userdashboard/order/add/{id}(id = ${item.getItem_id()})}" class="btn btn-danger btn-sm rounded">
+                                                    <i class="fa fa-check-square"> Order Now</i>
                                                 </a>
                                             </form>
                                         </td>
