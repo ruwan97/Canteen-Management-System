@@ -266,7 +266,7 @@
                                 <strong>Add User</strong>
                             </div>
                             <div class="card-body card-block">
-                                <form action="" method="post" class="">
+                                <form th:action="@{/admindashboard/user/add}" method="post" class="">
                                     <div class="form-group"><label for="id" class=" form-control-label">User Id</label><input type="text" id="id" name="id" placeholder="Enter Id.." class="form-control"></div>
 
                                     <div class="form-group"><label for="name" class=" form-control-label">User Name</label><input type="text" id="name" name="name" placeholder="Enter Name.." class="form-control"></div>
@@ -274,22 +274,28 @@
                                     <div class="form-group"><label for="email" class=" form-control-label">User Email</label><input type="email" id="email" name="email" placeholder="Enter Email.." class="form-control"></div>
 
                                     <div class="form-group"><label for="select" class=" form-control-label">User Role</label>
-                                        <select name="select" id="select" class="form-control">
+                                        <select name="role" id="select" class="form-control">
                                             <option value="0">-- select --</option>
                                             <option value="1">admin</option>
-                                            <option value="1">admin</option>
+                                            <option value="2">user</option>
                                         </select>
                                     </div>
+                                    <button type="submit" class="btn btn-primary btn-sm">
+                                        <i class="fa fa-dot-circle-o"></i> Submit
+                                    </button>
+                                    <button type="reset" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-ban"></i> Reset
+                                    </button>
                                 </form>
                             </div>
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-dot-circle-o"></i> Submit
-                                </button>
-                                <button type="reset" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-ban"></i> Reset
-                                </button>
-                            </div>
+<!--                            <div class="card-footer">-->
+<!--                                <button type="submit" class="btn btn-primary btn-sm">-->
+<!--                                    <i class="fa fa-dot-circle-o"></i> Submit-->
+<!--                                </button>-->
+<!--                                <button type="reset" class="btn btn-danger btn-sm">-->
+<!--                                    <i class="fa fa-ban"></i> Reset-->
+<!--                                </button>-->
+<!--                            </div>-->
                         </div>
                     </div>                                         
                 </div>

@@ -35,6 +35,17 @@ public class AdminController {
         return "admin/users";
     }
 
+    //admin add user
+    @PostMapping("/admindashboard/user/add")
+    public String addUser(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("role") Integer u_role)
+    {
+        boolean result = user_service.adAddUser(u_id, u_name, u_email, u_role);
+        if (result)
+            return "redirect:/admindashboard/user/view";
+        else
+            return "redirect:/admindashboard/user/add";
+    }
+
     //admin delete user
     @RequestMapping("/admindashboard/user/delete/{id}")
     public String deleteUser(@PathVariable("id") String user_id){

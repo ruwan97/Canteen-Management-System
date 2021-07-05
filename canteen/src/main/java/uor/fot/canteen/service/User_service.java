@@ -17,9 +17,15 @@ public class User_service {
     @Autowired
     private User_repository user_repository;
 
-    //create user
-    public boolean addUser(String u_id, String u_name, String u_email, String u_password, Integer u_role, String u_contact, String u_image){
-        user_repository.userCreate(u_id, u_name, u_email, u_password, u_role, u_contact, u_image);
+    //register user
+    public boolean registerUser(String u_id, String u_name, String u_email, String u_password, Integer u_role, String u_contact, String u_image){
+        user_repository.userRegister(u_id, u_name, u_email, u_password, u_role, u_contact, u_image);
+        return true;
+    }
+
+    //admin add user
+    public boolean adAddUser(String u_id, String u_name, String u_email,Integer u_role){
+        user_repository.adUserCreate(u_id, u_name, u_email, u_role);
         return true;
     }
 
