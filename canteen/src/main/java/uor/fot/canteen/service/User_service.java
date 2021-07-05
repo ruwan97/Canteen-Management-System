@@ -23,11 +23,11 @@ public class User_service {
         return true;
     }
 
-    //admin add user
-    public boolean adAddUser(String u_id, String u_name, String u_email,Integer u_role){
-        user_repository.adUserCreate(u_id, u_name, u_email, u_role);
-        return true;
-    }
+//    //admin add user
+//    public boolean adAddUser(String u_id, String u_name, String u_email,Integer u_role){
+//        user_repository.adUserCreate(u_id, u_name, u_email, u_role);
+//        return true;
+//    }
 
     //login user
     public User loginUser(String u_email, String U_password) {
@@ -40,8 +40,8 @@ public class User_service {
     }
 
     //update user
-    public void userUpdate(String u_id, String u_name, String U_email, Integer u_role){
-        user_repository.adUpdateUser(u_id, u_name, U_email, u_role);
+    public void userUpdate(String u_id, String u_name, String U_email, String u_password,  Integer u_role, Integer u_contact, String u_image){
+        user_repository.adUpdateUser(u_id, u_name, U_email, u_password,  u_role, u_contact, u_image);
     }
 
     //get user

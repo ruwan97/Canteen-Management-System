@@ -17,10 +17,10 @@ public interface User_repository extends JpaRepository<User, String> {
     @Procedure(procedureName = "user_account_create_procedure")
     void userRegister(String user_id, String user_name, String user_email, String user_password, Integer user_role, String user_contact, String user_image);
 
-    //admin add user
-    @Transactional
-    @Procedure(procedureName = "ad_user_account_create_procedure")
-    void adUserCreate(String user_id, String u_name, String u_email, Integer u_role);
+//    //admin add user
+//    @Transactional
+//    @Procedure(procedureName = "user_account_create_procedure")
+//    void adUserCreate(String user_id, String u_name, String u_email, Integer u_role);
 
     //login user
     @Query(value = "SELECT u FROM User u WHERE u.user_email=?1 AND u.user_password=?2")
@@ -30,10 +30,10 @@ public interface User_repository extends JpaRepository<User, String> {
     @Query(value = "SELECT *FROM ad_view_users", nativeQuery = true)
     List<User> getAllUsers();
 
-    //update users
+    //admin update users
     @Transactional
-    @Procedure(procedureName = "ad_user_account_update_procedure")
-    void adUpdateUser(String user_id, String user_name, String user_email, Integer user_role);
+    @Procedure(procedureName = "user_account_update_procedure")
+    void adUpdateUser(String user_id, String user_name, String user_email, String user_password, Integer user_role, Integer user_contact, String user_image);
 
     //delete user
     @Transactional

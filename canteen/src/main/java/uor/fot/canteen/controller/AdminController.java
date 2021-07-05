@@ -43,14 +43,25 @@ public class AdminController {
 
     //admin add user
     @PostMapping("/adduser")
-    public String addUser(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("role") Integer u_role)
+    public String addUser(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("password") String u_password, @RequestParam("role") Integer u_role, @RequestParam("contact") String u_contact, @RequestParam("image") String u_image)
     {
-        boolean result = user_service.adAddUser(u_id, u_name, u_email, u_role);
+        boolean result = user_service.registerUser(u_id, u_name, u_email,u_password, u_role, u_contact, u_image);
         if (result)
             return "redirect:/admindashboard/user/view";
         else
             return "redirect:/admindashboard/user/add";
     }
+
+//    //admin add user
+//    @PostMapping("/adduser")
+//    public String addUser(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("role") Integer u_role)
+//    {
+//        boolean result = user_service.adAddUser(u_id, u_name, u_email, u_role);
+//        if (result)
+//            return "redirect:/admindashboard/user/view";
+//        else
+//            return "redirect:/admindashboard/user/add";
+//    }
 
     //admin delete user
     @RequestMapping("/admindashboard/user/delete/{id}")
@@ -80,8 +91,8 @@ public class AdminController {
 
     //admin update user
     @PostMapping("/userupdate")
-    public String adUpdateUsers(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("role") Integer u_role){
-        user_service.userUpdate(u_id, u_name, u_email, u_role);
+    public String adUpdateUsers(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("password") String u_password, @RequestParam("role") Integer u_role, @RequestParam("contact") Integer u_contact, @RequestParam("image") String u_image){
+        user_service.userUpdate(u_id, u_name, u_email, u_password, u_role, u_contact, u_image);
         return "redirect:/admindashboard/user/view";
     }
 

@@ -273,12 +273,16 @@
 
                                     <div class="form-group"><label for="email" class=" form-control-label">User Email</label><input type="email" id="email" name="email" th:value="${updateuser.getUser_email()}" class="form-control"></div>
 
+                                    <div class="form-group"><label for="email" class=" form-control-label">User Password</label><input type="password" id="password" name="password" th:value="${updateuser.getUser_password()}"  class="form-control"></div>
+
                                     <div class="form-group"><label for="role" class=" form-control-label">User Role</label><input type="text" id="role" name="role" th:value="${updateuser.getUser_role()}" class="form-control" readonly></div>
 
-<!--                                    <div class="form-group">-->
-<!--                                        <div class=""><label for="file-input" class=" form-control-label">Item Image</label></div>-->
-<!--                                        <div class="form-group"><input type="file" id="file-input" name="image" class="form-control-file"></div>-->
-<!--                                    </div>-->
+                                    <div class="form-group"><label for="email" class=" form-control-label">User Mobile</label><input type="text" id="contact" name="contact" th:value="${updateuser.getUser_contact()}" class="form-control"></div>
+
+                                    <div class="form-group">
+                                        <div class=""><label for="file-input" class=" form-control-label">User Image</label></div>
+                                        <div class="form-group"><input type="file" id="file-input" name="image" class="form-control-file"></div>
+                                    </div>
 
                                     <button type="submit" class="btn btn-primary btn-sm">
                                         <i class="fa fa-pencil"></i> Update
