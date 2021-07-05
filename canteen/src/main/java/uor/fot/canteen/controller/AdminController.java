@@ -35,8 +35,14 @@ public class AdminController {
         return "admin/users";
     }
 
+    //view user page
+    @RequestMapping("/admindashboard/user/add")
+    public String viewAddUserPage(Model model){
+        return "admin/user_add";
+    }
+
     //admin add user
-    @PostMapping("/admindashboard/user/add")
+    @PostMapping("/adduser")
     public String addUser(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("role") Integer u_role)
     {
         boolean result = user_service.adAddUser(u_id, u_name, u_email, u_role);
@@ -80,8 +86,15 @@ public class AdminController {
     }
 
 
-    //admin add item
+
+    //view item page
     @RequestMapping("/admindashboard/item/add")
+    public String viewAddItemPage(Model model){
+        return "admin/item_add";
+    }
+
+    //admin add item
+    @RequestMapping("/additem")
     public String addItem(@RequestParam("id") String item_id, @RequestParam("name") String item_name, @RequestParam("price") Float unit_price, @RequestParam("image") String item_image)
     {
         boolean result = item_service.addItem(item_id, item_name, unit_price, item_image);
