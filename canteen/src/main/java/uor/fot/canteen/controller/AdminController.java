@@ -91,9 +91,9 @@ public class AdminController {
 
     //ad update item
     @PostMapping("/itemupdate")
-    public String adUdpdateUsers(@RequestParam("id") String item_id, @RequestParam("name") String item_name, @RequestParam("price") Float unit_price){
-        item_service.itemUpdate(item_id, item_name, unit_price);
-        return "redirect:/admin/items";
+    public String adUdpdateItems(@RequestParam("id") String item_id, @RequestParam("name") String item_name, @RequestParam("price") Float unit_price){
+        item_service.adItemUpdate(item_id, item_name, unit_price);
+        return "redirect:/admindashboard/items/view";
     }
 
 
