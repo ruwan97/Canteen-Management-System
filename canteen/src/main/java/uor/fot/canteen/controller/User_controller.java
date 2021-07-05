@@ -4,9 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import uor.fot.canteen.model.Item;
 import uor.fot.canteen.model.User;
+import uor.fot.canteen.service.Item_service;
 import uor.fot.canteen.service.User_service;
 
+import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -14,6 +17,9 @@ public class User_controller {
 
     @Autowired
     private User_service user_service;
+
+    @Autowired
+    private Item_service item_service;
 
     //register user
     @PostMapping("/signup")
@@ -63,4 +69,21 @@ public class User_controller {
 
     //update user
 
+
+
+//
+//    public String UserVeiwOrders(Model model , @PathVariable "id" String user_id){
+//        User user=user_service.getUser(user_id);
+//    }
+
+
+    //admin view items
+    @RequestMapping("/userdashboard/items/view")
+    public String viewItems(Model model){
+        List<Item> items = item_service.getUserItems();
+//        List<Inventory> inventories = inventory_service.getAllInventoryItems();
+        model.addAttribute("viewUseritems", items);
+//        model.addAttribute("viewitems", inventories);
+        return "user/user_items";
+    }
 }

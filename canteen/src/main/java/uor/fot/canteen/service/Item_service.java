@@ -17,7 +17,7 @@ public class Item_service {
     @Autowired
     private Item_repository item_repository;
 
-    //view all items
+    //admin view all items
     public List<Item> getAllItems(){
         return item_repository.getAllItems();
     }
@@ -31,4 +31,11 @@ public class Item_service {
     public Item getItem(String item_id){
         return item_repository.findById(item_id).get();
     }
+
+    //user view all items
+    public List<Item> getUserItems(){
+        return item_repository.getUserItems();
+    }
+
+
 }
