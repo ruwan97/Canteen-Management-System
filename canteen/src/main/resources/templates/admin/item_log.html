@@ -277,13 +277,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>2</td>
-                                            <td>ssssssss</td>
-                                            <td>root</td>
-                                            <td>insert</td>
-                                            <td>2020-03-23</td>
+                                        <tr th:each="itemlog:${viewitemlog}">
+                                            <td th:text="${itemlog.getLog_id()}"></td>
+                                            <td th:text="${itemlog.getItem_id()}"></td>
+                                            <td th:text="${itemlog.getData()}"></td>
+                                            <td th:text="${itemlog.getUser()}"></td>
+                                            <td th:text="${itemlog.getOperation()}"></td>
+                                            <td th:text="${itemlog.getChanged_at()}"></td>
                                         </tr>
                                     </tbody>
                                 </table>

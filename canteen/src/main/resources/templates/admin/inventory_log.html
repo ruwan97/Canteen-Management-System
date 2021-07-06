@@ -277,13 +277,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>2</td>
-                                            <td>ssssssss</td>
-                                            <td>root</td>
-                                            <td>insert</td>
-                                            <td>2020-03-23</td>
+                                        <tr th:each="inventorylog:${viewinventorylog}">
+                                            <td th:text="${inventorylog.getLog_id()}"></td>
+                                            <td th:text="${inventorylog.getInv_id()}"></td>
+                                            <td th:text="${inventorylog.getData()}"></td>
+                                            <td th:text="${inventorylog.getUser()}"></td>
+                                            <td th:text="${inventorylog.getOperation()}"></td>
+                                            <td th:text="${inventorylog.getChanged_at()}"></td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -31,6 +31,12 @@ public class AdminController {
     private User_log_service user_log_service;
     @Autowired
     private Order_log_service order_log_service;
+    @Autowired
+    private Item_log_service item_log_service;
+    @Autowired
+    private Inventory_log_service inventory_log_service;
+    @Autowired
+    private Transaction_log_service transaction_log_service;
 
 
     @RequestMapping("/admindashboard")
@@ -261,6 +267,8 @@ public class AdminController {
     //view item log
     @RequestMapping("/admindashboard/logs/itemlog/view")
     public String viewItemLog(Model model){
+        List<Item_log> item_logs = item_log_service.getItemLog();
+        model.addAttribute("viewitemlog", item_logs);
         return "admin/item_log";
     }
 
@@ -268,12 +276,16 @@ public class AdminController {
     //view inventory log
     @RequestMapping("/admindashboard/logs/inventorylog/view")
     public String viewInventoryLog(Model model){
+        List<Inventory_log> inventory_logs = inventory_log_service.getInventoryLog();
+        model.addAttribute("viewinventorylog", inventory_logs);
         return "admin/inventory_log";
     }
 
     //view transaction log
     @RequestMapping("/admindashboard/logs/transactionlog/view")
     public String viewTransactionLog(Model model){
+        List<Transaction_log> transaction_logs = transaction_log_service.getTransactionLog();
+        model.addAttribute("viewtransactionlog", transaction_logs);
         return "admin/transaction_log";
     }
 
