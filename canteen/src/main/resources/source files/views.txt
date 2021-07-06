@@ -1,0 +1,32 @@
+//ok
+CREATE OR REPLACE VIEW `ad_view_users` AS
+SELECT `user_id`, `user_name`, `user_email`, `user_password`, `user_role`, `user_contact`, `user_image`
+FROM user;
+
+//ok
+CREATE OR REPLACE VIEW `ad_view_inventory` AS
+SELECT inv.`inv_id`, itm.`item_id`, itm.`item_name`, itm.`unit_price`, inv.`quantity`
+FROM `item` itm, `inventory` inv
+WHERE itm.`item_id` = inv.`item_id` GROUP BY `inv_id`;
+
+//ok
+CREATE OR REPLACE VIEW `ad_view_orders` AS
+SELECT o.`order_id`, o.`user_id`, o.`item_id`, i.`item_name`, i.`unit_price`, o.`quantity`, o.`order_amount`, o.`date_and_time`, i.`item_image`
+FROM `orders` o, `item` i
+WHERE o.`item_id` = i.`item_id` GROUP BY `order_id`;
+
+//ok
+CREATE OR REPLACE VIEW `view_all_items` AS
+SELECT itm.`item_id`, itm.`item_name`, itm.`unit_price`, inv.`quantity`, itm.`item_image`
+FROM `item` itm, `inventory` inv
+WHERE itm.`item_id` = inv.`item_id` GROUP BY `item_id`;
+
+//drop kara
+CREATE OR REPLACE VIEW `user_view_items` AS
+SELECT itm.`item_id`, itm.`item_name`, itm.`unit_price`, inv.`quantity`, itm.`item_image`
+FROM `item` itm, `inventory` inv
+WHERE itm.`item_id` = inv.`item_id` GROUP BY `item_id`;
+
+
+
+

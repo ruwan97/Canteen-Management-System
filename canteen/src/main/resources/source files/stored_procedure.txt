@@ -1,0 +1,275 @@
+//user
+//drop kara
+DROP PROCEDURE IF EXISTS ad_user_account_create_procedure;
+DELIMITER //
+CREATE PROCEDURE ad_user_account_create_procedure(IN id VARCHAR(6), IN name VARCHAR(255), IN email VARCHAR(100), IN password VARCHAR(50), IN role INT(1),  IN image VARCHAR(255)) 
+BEGIN
+INSERT INTO `user`(`user_id`, `user_name`, `user_email`, `user_password`, `user_role`, `user_image`) VALUES (id , name, email, password, role, image);
+END//
+DELIMITER ;
+
+CALL ad_user_account_create_procedure('test4', 'Test Name 3', 'test3@gmail.com', 2, '1.png');
+
+//drop kara
+DROP PROCEDURE IF EXISTS ad_user_account_update_procedure;
+DELIMITER //
+CREATE PROCEDURE ad_user_account_update_procedure(IN id VARCHAR(6), IN name VARCHAR(255), IN email VARCHAR(100), IN role INT(1)) 
+BEGIN
+UPDATE `user` 
+SET 
+`user_id` = id, 
+`user_name` = name, 
+`user_email` = email, 
+`user_role` = role
+WHERE `user_id` = id;
+END//
+DELIMITER ;
+
+CALL ad_user_account_update_procedure('test5', 'nuwan','nuwan@gmail.com', 1);
+
+
+
+
+DROP PROCEDURE IF EXISTS user_account_create_procedure;
+DELIMITER //
+CREATE PROCEDURE user_account_create_procedure(IN id VARCHAR(6), IN name VARCHAR(255), IN email VARCHAR(100), IN password VARCHAR(50), IN role INT(1), IN contact INT(10), IN image VARCHAR(255)) 
+BEGIN
+INSERT INTO `user`(`user_id`, `user_name`, `user_email`, user_password, `user_role`, `user_contact`, `user_image`) VALUES (id , name, email, password, role, contact, image);
+END//
+DELIMITER ;
+
+CALL user_account_create_procedure('test5', 'Test Name 5', 'test5@gmail.com', '12345aa', 2, 0718968789, 'images/1.jpg');
+
+
+DROP PROCEDURE IF EXISTS user_account_delete_procedure;
+DELIMITER //
+CREATE PROCEDURE user_account_delete_procedure(IN id VARCHAR(6)) 
+BEGIN
+DELETE FROM `user` WHERE `user_id` = id;
+END//
+DELIMITER ;
+
+CALL user_account_delete_procedure('TG0004');
+
+
+DROP PROCEDURE IF EXISTS user_account_update_procedure;
+DELIMITER //
+CREATE PROCEDURE user_account_update_procedure(IN id VARCHAR(6), IN name VARCHAR(255), IN email VARCHAR(100), IN password VARCHAR(50), IN role INT(1), IN contact INT(10), IN image VARCHAR(255)) 
+BEGIN
+UPDATE `user` 
+SET 
+`user_id` = id, 
+`user_name` = name, 
+`user_email` = email, 
+`user_password` = password,
+`user_role` = role, 
+`user_contact` = contact,
+`user_image` = image
+WHERE `user_id` = id;
+END//
+DELIMITER ;
+
+CALL user_account_update_procedure('test5', 'ruwan','ruwan@gmail.com', '2222236', 2 ,0717307044, 'images/ruwan.png');
+
+
+
+//inventory
+
+DROP PROCEDURE IF EXISTS insert_inventory_procedure;
+DELIMITER //
+CREATE PROCEDURE insert_inventory_procedure(IN itm_id VARCHAR(6), IN quantity INT(5)) 
+BEGIN
+INSERT INTO `inventory`(`item_id`, `quantity`) VALUES (itm_id, quantity);
+END//
+DELIMITER ;
+
+CALL insert_inventory_procedure('itm001',200);
+
+
+DROP PROCEDURE IF EXISTS delete_inventory_procedure;
+DELIMITER //
+CREATE PROCEDURE delete_inventory_procedure(IN id VARCHAR(6)) 
+BEGIN
+DELETE FROM `inventory` WHERE `inv_id` = id;
+END//
+DELIMITER ;
+
+call delete_inventory_procedure(2);
+
+
+DROP PROCEDURE IF EXISTS update_inventory_procedure;
+DELIMITER //
+CREATE PROCEDURE update_inventory_procedure(IN id INT, IN itm_id VARCHAR(6), IN quantity INT(5)) 
+BEGIN
+UPDATE `inventory` 
+SET 
+`item_id` = itm_id,
+`quantity` = quantity
+WHERE `inv_id` = id;
+END//
+DELIMITER ;
+
+CALL update_inventory_procedure(1, 'itm001', 500);
+
+
+
+
+//item
+
+DROP PROCEDURE IF EXISTS insert_item_procedure;
+DELIMITER //
+CREATE PROCEDURE insert_item_procedure(IN itm_id VARCHAR(6), IN itm_name VARCHAR(255), IN price FLOAT(2), IN image VARCHAR(255)) 
+BEGIN
+INSERT INTO `item`(`item_id`, `item_name`, `unit_price`, `item_image`) VALUES (itm_id , itm_name, price, image);
+END//
+DELIMITER ;
+
+CALL insert_item_procedure('itm001', 'bun', 15, 'images/1.png');
+
+
+DROP PROCEDURE IF EXISTS delete_item_procedure;
+DELIMITER //
+CREATE PROCEDURE delete_item_procedure(IN itm_id VARCHAR(6)) 
+BEGIN
+DELETE FROM `item` WHERE `item_id` = itm_id;
+END//
+DELIMITER ;
+
+CALL delete_item_procedure('itm010');
+
+
+DROP PROCEDURE IF EXISTS update_item_procedure;
+DELIMITER //
+CREATE PROCEDURE update_item_procedure(IN itm_id VARCHAR(6), IN itm_name VARCHAR(255), IN price FLOAT(2), IN image VARCHAR(255)) 
+BEGIN
+UPDATE `item` 
+SET 
+`item_id` = itm_id,
+`item_name` = itm_name,
+`unit_price` = price,
+`item_image` = image 
+WHERE `item_id` = itm_id;
+END//
+DELIMITER ;
+
+CALL update_item_procedure('itm002', 'eggs', 15, '1.png');
+
+
+
+
+
+//orders
+
+DROP PROCEDURE IF EXISTS insert_order_procedure;
+DELIMITER //
+CREATE PROCEDURE insert_order_procedure(IN u_id VARCHAR(6), IN itm_id VARCHAR(6), IN quantity INT(5))
+BEGIN
+DECLARE price FLOAT(2);
+DECLARE total FLOAT(2); 
+SELECT unit_price INTO price FROM item WHERE item_id = itm_id;
+SET total = price * quantity;
+INSERT INTO orders (`user_id`, `item_id`, `quantity`, `order_amount`) VALUES (u_id, itm_id, quantity, total);
+END//
+DELIMITER ;
+
+CALL insert_order_procedure('TG0001', 'itm003', 20);
+
+
+
+//drop kara
+DROP PROCEDURE IF EXISTS delete_order_procedure;
+DELIMITER //
+CREATE PROCEDURE delete_order_procedure(IN or_id VARCHAR(6)) 
+BEGIN
+DELETE FROM `orders` WHERE `order_id` = or_id;
+END//
+DELIMITER ;
+
+call delete_order_procedure(1);
+
+
+//drop karaa
+DROP PROCEDURE IF EXISTS update_order_procedure;
+DELIMITER //
+CREATE PROCEDURE update_order_procedure(IN or_id INT, IN u_id VARCHAR(6), IN itm_id VARCHAR(6), IN quantity INT(5)) 
+BEGIN
+DECLARE price FLOAT(2);
+DECLARE total FLOAT(2); 
+SELECT unit_price INTO price FROM item WHERE item_id = itm_id;
+SET total = price * quantity;
+UPDATE `orders` 
+SET 
+`user_id` = u_id, 
+`item_id` = itm_id, 
+`quantity` = quantity,
+`order_amount` = total
+WHERE `order_id` = or_id;
+END//
+DELIMITER ;
+
+CALL update_order_procedure(1, 'stu001', 'itm002', 7);
+
+
+
+//transaction
+//after comfirm order
+
+DROP PROCEDURE IF EXISTS insert_transaction_procedure;
+DELIMITER //
+CREATE PROCEDURE insert_transaction_procedure(IN or_id INT) 
+BEGIN
+DECLARE u_id VARCHAR(6);
+DECLARE itm_id VARCHAR(6);
+DECLARE tr_date DATE;
+DECLARE total FLOAT(2); 
+SELECT `user_id`, `item_id`, curdate(), `order_amount` INTO u_id, itm_id, tr_date, total
+FROM `orders` 
+WHERE `order_id` = or_id;
+INSERT INTO `transaction`(`order_id`, `user_id`, `item_id`, `order_amount`, `transaction_date`) VALUES (or_id, u_id, itm_id, total, tr_date);
+END//
+DELIMITER ;
+
+
+CALL insert_transaction_procedure(20);
+
+
+
+//// 
+user_view_orders
+
+DROP PROCEDURE IF EXISTS user_view_orders_procedure;
+DELIMITER //
+CREATE PROCEDURE user_view_orders_procedure(IN u_id VARCHAR(6))
+BEGIN
+SELECT o.`user_id`, o.`item_id`, i.`item_name`, i.`unit_price`, o.`quantity`, o.`order_amount`, o.`date_and_time`, i.`item_image`
+FROM `orders` o, `item` i  
+WHERE  o.`item_id` = i.`item_id` AND o.`user_id` = u_id;
+END//
+DELIMITER ;
+
+CALL user_view_orders_procedure('TG0002');
+
+
+
+//// 
+user_view_invoce
+
+DROP PROCEDURE IF EXISTS user_view_invoice_procedure;
+DELIMITER //
+CREATE PROCEDURE user_view_invoice_procedure(IN o_id VARCHAR(6))
+BEGIN
+SELECT o.`user_id`, o.`item_id`, i.`item_name`, i.`unit_price`, o.`quantity`, o.`order_amount`, o.`date_and_time`
+FROM `orders` o, `item` i  
+WHERE  o.`item_id` = i.`item_id` AND o.`order_id` = o_id;
+END//
+DELIMITER ;
+
+CALL user_view_invoice_procedure(1);
+
+
+
+
+
+
+
+
