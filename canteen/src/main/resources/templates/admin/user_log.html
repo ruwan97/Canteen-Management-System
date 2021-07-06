@@ -276,12 +276,12 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>ssssssss</td>
-                                            <td>root</td>
-                                            <td>insert</td>
-                                            <td>2020-03-23</td>
+                                        <tr th:each="userlog:${viewuserlog}">
+                                            <td th:text="${userlog.getLog_id()}"></td>
+                                            <td th:text="${userlog.getUser_details()}"></td>
+                                            <td th:text="${userlog.getUser()}"></td>
+                                            <td th:text="${userlog.getOperation()}"></td>
+                                            <td th:text="${userlog.getChanged_at()}"></td>
                                         </tr>
                                     </tbody>
                                 </table>

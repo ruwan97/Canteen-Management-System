@@ -28,7 +28,7 @@ public class Inventory_service {
     }
 
     //get item id
-//    public Inventory getItem(String item_id){
-//        return inventory_repository.getById(item_id).get();
-//    }
+    public Inventory getItem(Integer id){
+        return inventory_repository.findById(id).get();
+    }
 }
