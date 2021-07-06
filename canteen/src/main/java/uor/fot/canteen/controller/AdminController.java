@@ -25,6 +25,8 @@ public class AdminController {
     private Transaction_service transaction_service;
     @Autowired
     private Transactions_summary_service transactions_summary_service;
+    @Autowired
+    private Inventory_service inventory_service;
 
 
     @RequestMapping("/admindashboard")
@@ -155,7 +157,7 @@ public class AdminController {
 
     //admin delete item
     @RequestMapping("/admindashboard/item/delete/{id}")
-    public String deleteItwm(@PathVariable("id") String item_id){
+    public String deleteItem(@PathVariable("id") String item_id){
         boolean result = item_service.deleteItem(item_id);
         if (result)
             return "redirect:/admindashboard/items/view";
@@ -167,7 +169,21 @@ public class AdminController {
     //inventory
     @RequestMapping("/admindashboard/inventory/view")
     public String viewInventory(Model model){
-        return "admin/inventory";
+            List<Inventory> inventories = inventory_service.getAllInventoryItems();
+//        List<Inventory> inventories = inventory_service.getAllInventoryItems();
+            model.addAttribute("viewinventory", inventories);
+//        model.addAttribute("viewitems", inventories);
+
+            return "admin/inventory";
+    }
+
+    @RequestMapping("/admindashboard/inventory/delete/{id}")
+    public String deleteInventory(@PathVariable("id") String item_id){
+        boolean result = inventory_service.deleteInventory(item_id);
+        if (result)
+            return "redirect:/admindashboard/inventory/view";
+        else
+            return "redirect:/admindashboard/inventory/view";
     }
 
     @RequestMapping("/admindashboard/inventory/add")
