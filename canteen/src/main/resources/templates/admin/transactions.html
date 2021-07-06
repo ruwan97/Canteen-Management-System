@@ -272,20 +272,18 @@
                                             <th>Order Id</th>
                                             <th>User Id</th>
                                             <th>Item Id</th>
-                                            <th>Unit Price</th>
-                                            <th>Amount</th>
-                                            <th>Date</th>
+                                            <th>Order Amount</th>
+                                            <th>Transction Date</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>3</td>
-                                            <td>TG0001</td>
-                                            <td>it3001</td>
-                                            <td>25</td>
-                                            <td>125</td>
-                                            <td>2020-03-23</td>
+                                        <tr th:each="transaction:${viewtransactions}">
+                                            <td th:text="${transaction.getTransaction_id()}"></td>
+                                            <td th:text="${transaction.getOrder_id()}"></td>
+                                            <td th:text="${transaction.getUser_id()}"></td>
+                                            <td th:text="${transaction.getItem_id()}"></td>
+                                            <td th:text="${transaction.getOrder_amount()}"></td>
+                                            <td th:text="${transaction.getTransaction_date()}"></td>
                                         </tr>
                                     </tbody>
                                 </table>

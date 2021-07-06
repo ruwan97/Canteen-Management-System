@@ -7,12 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import uor.fot.canteen.model.Item;
-import uor.fot.canteen.model.Orders;
-import uor.fot.canteen.model.User;
-import uor.fot.canteen.service.Item_service;
-import uor.fot.canteen.service.Orders_service;
-import uor.fot.canteen.service.User_service;
+import uor.fot.canteen.model.*;
+import uor.fot.canteen.service.*;
 
 import java.util.List;
 
@@ -25,6 +21,11 @@ public class AdminController {
     private Item_service item_service;
     @Autowired
     private Orders_service orders_service;
+    @Autowired
+    private Transaction_service transaction_service;
+    @Autowired
+    private Transactions_summary_service transactions_summary_service;
+
 
     @RequestMapping("/admindashboard")
     public String viewAdminDash(Model model){
@@ -174,7 +175,8 @@ public class AdminController {
         return "admin/inv_update_form";
     }
 
-    //order
+
+    //admin view orders
     @RequestMapping("/admindashboard/orders/view")
     public String viewOrders(Model model){
         List<Orders> orders = orders_service.getAllOrders();
@@ -185,14 +187,18 @@ public class AdminController {
     }
 
 
-    //transaction
+    //admin view transactions
     @RequestMapping("/admindashboard/transaction/view")
     public String viewTransactions(Model model){
+        List<Transaction> transactions = transaction_service.getAllTransactions();
+        model.addAttribute("viewtransactions", transactions);
         return "admin/transactions";
     }
 
     @RequestMapping("/admindashboard/transaction/viewsummary")
     public String viewTransactionsSummary(Model model){
+        List<Transactions_summary> transactions_summaries = transactions_summary_service.getDailyTransactions();
+        model.addAttribute("viewtransactionSummaries", transactions_summaries);
         return "admin/transactions_summary";
     }
 

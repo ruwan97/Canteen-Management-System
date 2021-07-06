@@ -12,7 +12,7 @@ public class Transactions_summary {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Date transaction_date;
+    private Date date;
     private Float total_amount;
     private Integer transactions_count;
 
@@ -25,12 +25,12 @@ public class Transactions_summary {
         this.id = id;
     }
 
-    public Date getTransaction_date() {
-        return transaction_date;
+    public Date getDate() {
+        return date;
     }
 
-    public void setTransaction_date(Date transaction_date) {
-        this.transaction_date = transaction_date;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public Float getTotal_amount() {

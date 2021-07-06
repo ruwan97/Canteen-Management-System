@@ -275,11 +275,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>2020-03-23</td>
-                                            <td>8000.75</td>
-                                            <td>20</td>
+                                        <tr th:each="transactions:${viewtransactionSummaries }">
+                                            <td th:text="${transactions.getId()}"></td>
+                                            <td th:text="${transactions.getDate()}"></td>
+                                            <td th:text="${transactions.getTotal_amount()}"></td>
+                                            <td th:text="${transactions.getTransactions_count()}"></td>
                                         </tr>
                                     </tbody>
                                 </table>

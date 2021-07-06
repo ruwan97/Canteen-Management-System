@@ -28,6 +28,7 @@ public class Orders_service {
         return true;
     }
 
+    //admin view orders
     public List<Orders> getAllOrders(){
         return orders_repository.getAllOrders();
     }
