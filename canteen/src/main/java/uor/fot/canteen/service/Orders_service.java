@@ -27,4 +27,8 @@ public class Orders_service {
         orders_repository.addOrder(u_id, Item_id, quantity);
         return true;
     }
+
+    public List<Orders> getAllOrders(){
+        return orders_repository.getAllOrders();
+    }
 }

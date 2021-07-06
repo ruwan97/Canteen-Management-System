@@ -271,26 +271,26 @@
                                             <th>Order Id</th>
                                             <th>User Id</th>
                                             <th>Item Id</th>
-                                            <th>Item Name</th>
-                                            <th>Unit Price</th>
+<!--                                            <th>Item Name</th>-->
+<!--                                            <th>Unit Price</th>-->
                                             <th>Quantity</th>
                                             <th>Amount</th>
-                                            <th>Date</th>
-                                            <th>Image</th>
+                                            <th>Date and time</th>
+<!--                                            <th>Image</th>-->
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                        <tr th:each="order:${vieworders}">
+                                            <td th:text="${order.getOrder_id()}"></td>
+                                            <td th:text="${order.getUser_id()}"></td>
+                                            <td th:text="${order.getItem_id()}"></td>
+<!--                                            <td></td>-->
+<!--                                            <td></td>-->
+                                            <td th:text="${order.getQuantity()}"></td>
+                                            <td th:text="${order.getOrder_amount()}"></td>
+                                            <td th:text="${order.getDate_and_time()}"></td>
+<!--                                            <td></td>-->
                                             <td class="text-center" >
                                                 <form action="" method="post">
                                                     <a href="" class="btn btn-success btn-sm rounded">

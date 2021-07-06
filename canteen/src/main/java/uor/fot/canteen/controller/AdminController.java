@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import uor.fot.canteen.model.Item;
+import uor.fot.canteen.model.Orders;
 import uor.fot.canteen.model.User;
 import uor.fot.canteen.service.Item_service;
+import uor.fot.canteen.service.Orders_service;
 import uor.fot.canteen.service.User_service;
 
 import java.util.List;
@@ -21,6 +23,8 @@ public class AdminController {
     private User_service user_service;
     @Autowired
     private Item_service item_service;
+    @Autowired
+    private Orders_service orders_service;
 
     @RequestMapping("/admindashboard")
     public String viewAdminDash(Model model){
@@ -173,8 +177,13 @@ public class AdminController {
     //order
     @RequestMapping("/admindashboard/orders/view")
     public String viewOrders(Model model){
+        List<Orders> orders = orders_service.getAllOrders();
+//        List<Inventory> inventories = inventory_service.getAllInventoryItems();
+        model.addAttribute("vieworders", orders);
+//        model.addAttribute("viewitems", inventories);
         return "admin/orders";
     }
+
 
     //transaction
     @RequestMapping("/admindashboard/transaction/view")
