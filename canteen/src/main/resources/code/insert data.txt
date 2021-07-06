@@ -1,8 +1,0 @@
-insert into user
-(user_id, user_name, user_email, user_role, user_contact)
-values
-("stu002", "damith", "damith@gmail.com", "student", 0714758965),
-("stf001", "nuwan", "nuwan@gmail.com", "staff", 0768975845),
-("stf002", "amith", "amith@gmail.com", "staff", 0768975800),
-("ad001", "pasan", "pasan@gmail.com", "admin", 0714748596);
-
