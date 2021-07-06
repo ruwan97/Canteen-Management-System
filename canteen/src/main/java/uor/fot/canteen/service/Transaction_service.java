@@ -20,4 +20,10 @@ public class Transaction_service {
     public List<Transaction> getAllTransactions(){
         return transaction_repository.getAllTransaction();
     }
+
+    //admin confirm order
+    public boolean confirmOrder(Integer order_id){
+        transaction_repository.cinfirmOrder(order_id);
+        return true;
+    }
 }

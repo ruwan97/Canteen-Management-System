@@ -293,7 +293,7 @@
 <!--                                            <td></td>-->
                                             <td class="text-center" >
                                                 <form action="" method="post">
-                                                    <a href="" class="btn btn-success btn-sm rounded">
+                                                    <a th:href="@{/admindashboard/order/confirm/{id}(id = ${order.getOrder_id()})}" class="btn btn-success btn-sm rounded">
                                                         <i class="fa fa-check-square"> Confirm</i>
                                                     </a>
                                                 </form>

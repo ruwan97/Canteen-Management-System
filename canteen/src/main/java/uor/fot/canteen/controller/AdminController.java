@@ -186,6 +186,16 @@ public class AdminController {
         return "admin/orders";
     }
 
+    //admin confirm order
+    @RequestMapping("/admindashboard/order/confirm/{id}")
+    public String confirmOrder(@PathVariable("id") Integer order_id){
+        boolean result = transaction_service.confirmOrder(order_id);
+        if (result)
+            return "redirect:/admindashboard/transaction/view";
+        else
+            return "redirect:/admindashboard/orders/view";
+    }
+
 
     //admin view transactions
     @RequestMapping("/admindashboard/transaction/view")
