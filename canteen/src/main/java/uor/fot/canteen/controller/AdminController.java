@@ -153,6 +153,16 @@ public class AdminController {
         return "redirect:/admindashboard/items/view";
     }
 
+    //admin delete item
+    @RequestMapping("/admindashboard/item/delete/{id}")
+    public String deleteItwm(@PathVariable("id") String item_id){
+        boolean result = item_service.deleteItem(item_id);
+        if (result)
+            return "redirect:/admindashboard/items/view";
+        else
+            return "redirect:/admindashboard/items/view";
+    }
+
 
     //inventory
     @RequestMapping("/admindashboard/inventory/view")

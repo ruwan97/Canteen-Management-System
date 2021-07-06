@@ -33,6 +33,12 @@ public class Item_service {
         item_repository.adUpdateItem(item_id, item_name, unit_price, item_image);
     }
 
+    //delete user
+    public boolean deleteItem(String item_id){
+        item_repository.itemDelete(item_id);
+        return true;
+    }
+
     //get item
     public Item getItem(String item_id){
         return item_repository.findById(item_id).get();

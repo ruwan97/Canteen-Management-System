@@ -28,5 +28,9 @@ public interface Item_repository extends JpaRepository<Item, String> {
     @Procedure(procedureName = "update_item_procedure")
     void adUpdateItem(String item_id, String item_name, Float unit_price, String item_image);
 
+    //delete item
+    @Transactional
+    @Procedure(procedureName = "delete_item_procedure")
+    void itemDelete(String item_id);
 
 }
