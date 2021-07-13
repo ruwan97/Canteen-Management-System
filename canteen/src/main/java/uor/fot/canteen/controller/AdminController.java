@@ -115,7 +115,7 @@ public class AdminController {
 
 
 
-    //view item page
+    //view add item page
     @RequestMapping("/admindashboard/item/add")
     public String viewAddItemPage(Model model){
         return "admin/item_add";
@@ -177,6 +177,23 @@ public class AdminController {
 
 
     //inventory
+    //view add inventory page
+    @RequestMapping("/admindashboard/inventory/add")
+    public String viewInventoryAdd(Model model){
+        return "admin/inventory_add";
+    }
+    //admin add inventory
+    @RequestMapping("/addinventory")
+    public String addInventory(@RequestParam("id") String item_id, @RequestParam("quantity") Integer quantity)
+    {
+        boolean result = inventory_service.addInventory(item_id, quantity);
+        if (result)
+            return "redirect:/admindashboard/inventory/view";
+        else
+            return "redirect:/admindashboard/inventory/add";
+    }
+
+    //admin view inventory
     @RequestMapping("/admindashboard/inventory/view")
     public String viewInventory(Model model){
             List<Inventory> inventories = inventory_service.getAllInventoryItems();
@@ -187,6 +204,7 @@ public class AdminController {
             return "admin/inventory";
     }
 
+    //admin delete inventory
     @RequestMapping("/admindashboard/inventory/delete/{id}")
     public String deleteInventory(@PathVariable("id") String item_id){
         boolean result = inventory_service.deleteInventory(item_id);
@@ -196,10 +214,6 @@ public class AdminController {
             return "redirect:/admindashboard/inventory/view";
     }
 
-    @RequestMapping("/admindashboard/inventory/add")
-    public String viewInventoryAdd(Model model){
-        return "admin/inventory_add";
-    }
 
     @RequestMapping("/admindashboard/inventory/update")
     public String viewInventoryUpdate(Model model){

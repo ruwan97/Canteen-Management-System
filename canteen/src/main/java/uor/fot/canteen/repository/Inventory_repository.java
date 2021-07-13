@@ -13,6 +13,11 @@ import java.util.List;
 @Repository
 public interface Inventory_repository extends JpaRepository<Inventory, Integer> {
 
+    //admin add inventory
+    @Transactional
+    @Procedure(procedureName = "insert_inventory_procedure")
+    void inventoryAdd(String item_id, Integer quantity);
+
     //admin view items from inventory
     @Query(value = "SELECT *FROM ad_view_inventory", nativeQuery = true)
     List<Inventory> getAllInventoryItems();

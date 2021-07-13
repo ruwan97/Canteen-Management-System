@@ -16,6 +16,12 @@ public class Inventory_service {
     @Autowired
     private Inventory_repository inventory_repository;
 
+    //admin add inventory
+    public boolean addInventory(String item_id, Integer quantity){
+        inventory_repository.inventoryAdd(item_id, quantity);
+        return true;
+    }
+
     //vite inventory items
     public List<Inventory> getAllInventoryItems(){
         return inventory_repository.getAllInventoryItems();
