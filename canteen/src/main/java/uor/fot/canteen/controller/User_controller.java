@@ -81,7 +81,7 @@ public class User_controller {
 
     //user order add form
     @RequestMapping("/userdashboard/order/add/{id}")
-    public String viewItemUpdateForm(Model model, @PathVariable("id") String item_id){
+    public String viewItemAddForm(Model model, @PathVariable("id") String item_id){
         Item item = item_service.getItem(item_id);
         model.addAttribute("viewitems", item);
         return "user/user_add_order";
@@ -97,6 +97,5 @@ public class User_controller {
         else
             return "user/user_add_order";
     }
-
-
+    
 }

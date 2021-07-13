@@ -23,7 +23,7 @@ public class Item_service {
         return true;
     }
 
-    //admin view all items
+    //view all items
     public List<Item> getAllItems(){
         return item_repository.getAllItems();
     }
