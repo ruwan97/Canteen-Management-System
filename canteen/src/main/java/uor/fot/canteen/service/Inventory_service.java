@@ -22,9 +22,14 @@ public class Inventory_service {
         return true;
     }
 
-    //vite inventory items
+    //view inventory items
     public List<Inventory> getAllInventoryItems(){
         return inventory_repository.getAllInventoryItems();
+    }
+
+    //update inventory
+    public void adInventoryUpdate(Integer inv_id, String item_id, Integer quantity){
+        inventory_repository.adUpdateInventory(inv_id, item_id, quantity);
     }
 
     //delete inventory item

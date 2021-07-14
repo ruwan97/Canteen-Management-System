@@ -204,6 +204,29 @@ public class AdminController {
             return "admin/inventory";
     }
 
+    //admin inventory update view
+    @RequestMapping("/admindashboard/inventory/update")
+    public String viewUpdateInventory(Model model){
+        List<Inventory> inventories = inventory_service.getAllInventoryItems();
+        model.addAttribute("viewinventory", inventories);
+        return "admin/inventory_update";
+    }
+
+    //admin inventory update form
+    @RequestMapping("/admindashboard/inventory/updateform/{id}")
+    public String viewInventoryUpdateForm(Model model, @PathVariable("id") Integer id){
+        Inventory inventory = inventory_service.getItem(id);
+        model.addAttribute("updateinventory", inventory);
+        return "admin/inv_update_form";
+    }
+
+    //admin update inventory
+    @PostMapping("/inventoryupdate")
+    public String adUdpdateInventory(@RequestParam("id") Integer inv_id, @RequestParam("itemId") String item_id, @RequestParam("quantity") Integer quantity){
+        inventory_service.adInventoryUpdate(inv_id, item_id, quantity);
+        return "redirect:/admindashboard/inventory/view";
+    }
+
     //admin delete inventory
     @RequestMapping("/admindashboard/inventory/delete/{id}")
     public String deleteInventory(@PathVariable("id") String item_id){
@@ -212,17 +235,6 @@ public class AdminController {
             return "redirect:/admindashboard/inventory/view";
         else
             return "redirect:/admindashboard/inventory/view";
-    }
-
-
-    @RequestMapping("/admindashboard/inventory/update")
-    public String viewInventoryUpdate(Model model){
-        return "admin/inventory_update";
-    }
-
-    @RequestMapping("/admindashboard/inventory/updateform")
-    public String viewInventoryUpdateForm(Model model){
-        return "admin/inv_update_form";
     }
 
 

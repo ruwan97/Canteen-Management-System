@@ -22,6 +22,11 @@ public interface Inventory_repository extends JpaRepository<Inventory, Integer> 
     @Query(value = "SELECT *FROM ad_view_inventory", nativeQuery = true)
     List<Inventory> getAllInventoryItems();
 
+    //admin update inventory
+    @Transactional
+    @Procedure(procedureName = "update_inventory_procedure")
+    void adUpdateInventory(Integer inv_id, String item_id, Integer quantity);
+
     //delete inventory item
     @Transactional
     @Procedure(procedureName = "delete_inventory_procedure")

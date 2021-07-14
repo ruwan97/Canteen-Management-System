@@ -270,8 +270,6 @@
                                         <tr>
                                             <th>Inventory Id</th>
                                             <th>Item Id</th>
-<!--                                            <th>Item Name</th>-->
-<!--                                            <th>Unit Price</th>-->
                                             <th>Quantity</th>
                                             <th>Action</th>
                                         </tr>
@@ -280,8 +278,6 @@
                                         <tr th:each="inventory:${viewinventory}">
                                             <td th:text="${inventory.getInv_id()}"></td>
                                             <td th:text="${inventory.getItem_id()}"></td>
-<!--                                            <td></td>-->
-<!--                                            <td></td>-->
                                             <td th:text="${inventory.getQuantity()}"></td>
                                             <td class="text-center" >
                                                     <form action="" method="post">

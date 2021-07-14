@@ -266,20 +266,29 @@
                                 <strong>Update Inventory</strong>
                             </div>
                             <div class="card-body card-block">
-                                <form action="" method="post" class="">
-                                    <div class="form-group"><label for="id" class=" form-control-label">Item Id</label><input type="text" id="id" name="id" placeholder="Enter Id.." class="form-control"></div>
+                                <form th:action="@{/inventoryupdate}" method="post" class="">
+                                    <div class="form-group"><label for="invId" class=" form-control-label">Inventory Id</label><input type="text" id="invId" name="id" th:value="${updateinventory.getInv_id()}" class="form-control" readonly></div>
 
-                                    <div class="form-group"><label for="quantity" class=" form-control-label">Quantity</label><input type="number" id="quantity" name="quantity" placeholder="Enter Name.." class="form-control"></div>
+                                    <div class="form-group"><label for="itemId" class=" form-control-label">Item Id</label><input type="text" id="itemId" name="itemId" placeholder="Enter Item Id.." th:value="${updateinventory.getItem_id()}" class="form-control"></div>
+
+                                    <div class="form-group"><label for="quantity" class=" form-control-label">Quantity</label><input type="number" id="quantity" name="quantity" placeholder="Enter Quantity.." th:value="${updateinventory.getQuantity()}" class="form-control"></div>
+
+                                    <button type="submit" class="btn btn-primary btn-sm">
+                                        <i class="fa fa-pencil"></i> Update
+                                    </button>
+                                    <button type="reset" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-ban"></i> Reset
+                                    </button>
 
                                 </form>
                             </div>
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary btn-sm">
-                                    <i class="fa fa-pencil"></i> Update
-                                </button>
-                                <button type="reset" class="btn btn-danger btn-sm">
-                                    <i class="fa fa-ban"></i> Reset
-                                </button>
+<!--                                <button type="submit" class="btn btn-primary btn-sm">-->
+<!--                                    <i class="fa fa-pencil"></i> Update-->
+<!--                                </button>-->
+<!--                                <button type="reset" class="btn btn-danger btn-sm">-->
+<!--                                    <i class="fa fa-ban"></i> Reset-->
+<!--                                </button>-->
                             </div>
                         </div>
                     </div>                                         
