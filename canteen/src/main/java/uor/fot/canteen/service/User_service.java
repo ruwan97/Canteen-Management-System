@@ -2,12 +2,14 @@ package uor.fot.canteen.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 import uor.fot.canteen.model.User;
 import uor.fot.canteen.repository.User_repository;
 
 import javax.transaction.Transactional;
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 @Service
@@ -18,9 +20,22 @@ public class User_service {
     private User_repository user_repository;
 
     //register user
-    public boolean registerUser(String u_id, String u_name, String u_email, String u_password, Integer u_role, String u_contact, String u_image){
-        user_repository.userRegister(u_id, u_name, u_email, u_password, u_role, u_contact, u_image);
-        return true;
+    public void registerUser(String u_id, String u_name, String u_email, String u_password, Integer u_role, String u_contact, MultipartFile u_image){
+
+        String fileName = StringUtils.cleanPath(u_image.getOriginalFilename());
+        User user = new User();
+
+        if (fileName.contains("..")){
+            System.out.println("not a valid file");
+        }
+        try {
+            user.setUser_image(Base64.getEncoder().encodeToString(u_image.getBytes()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        user_repository.userRegister(u_id, u_name, u_email, u_password, u_role, u_contact, user.getUser_image());
+
     }
 
 //    //admin add user

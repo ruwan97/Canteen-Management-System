@@ -4,14 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import uor.fot.canteen.model.Item;
-import uor.fot.canteen.model.User;
 import uor.fot.canteen.service.Item_service;
 import uor.fot.canteen.service.Orders_service;
 import uor.fot.canteen.service.User_service;
 
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 public class User_controller {
@@ -27,13 +26,11 @@ public class User_controller {
 
     //register user
     @PostMapping("/signup")
-    public String addUser(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("password") String u_password, @RequestParam("role") Integer u_role, @RequestParam("contact") String u_contact, @RequestParam("image") String u_image)
+    public String registerUser(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("password") String u_password, @RequestParam("role") Integer u_role, @RequestParam("contact") String u_contact, @RequestParam("image") MultipartFile u_image)
     {
-        boolean result = user_service.registerUser(u_id, u_name, u_email,u_password, u_role, u_contact, u_image);
-        if (result)
-            return "redirect:/login";
-        else
-            return "redirect:/register";
+        user_service.registerUser(u_id, u_name, u_email,u_password, u_role, u_contact, u_image);
+
+        return "redirect:/login";
     }
 
 

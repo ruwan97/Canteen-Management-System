@@ -1,7 +1,9 @@
 package uor.fot.canteen.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class User {
@@ -13,6 +15,8 @@ public class User {
     private String user_password;
     private Integer user_role;
     private Integer user_contact;
+//    @Lob
+//    @Column(columnDefinition = "BLOB")
     private String user_image;
 
 

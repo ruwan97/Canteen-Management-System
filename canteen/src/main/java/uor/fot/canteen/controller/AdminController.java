@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import uor.fot.canteen.model.*;
 import uor.fot.canteen.service.*;
 
@@ -60,25 +61,13 @@ public class AdminController {
 
     //admin add user
     @PostMapping("/adduser")
-    public String addUser(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("password") String u_password, @RequestParam("role") Integer u_role, @RequestParam("contact") String u_contact, @RequestParam("image") String u_image)
+    public String addUser(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("password") String u_password, @RequestParam("role") Integer u_role, @RequestParam("contact") String u_contact, @RequestParam("image") MultipartFile u_image)
     {
-        boolean result = user_service.registerUser(u_id, u_name, u_email,u_password, u_role, u_contact, u_image);
-        if (result)
-            return "redirect:/admindashboard/user/view";
-        else
-            return "redirect:/admindashboard/user/add";
-    }
+        user_service.registerUser(u_id, u_name, u_email,u_password, u_role, u_contact, u_image);
 
-//    //admin add user
-//    @PostMapping("/adduser")
-//    public String addUser(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("role") Integer u_role)
-//    {
-//        boolean result = user_service.adAddUser(u_id, u_name, u_email, u_role);
-//        if (result)
-//            return "redirect:/admindashboard/user/view";
-//        else
-//            return "redirect:/admindashboard/user/add";
-//    }
+        return "redirect:/admindashboard/user/view";
+
+    }
 
     //admin delete user
     @RequestMapping("/admindashboard/user/delete/{id}")
