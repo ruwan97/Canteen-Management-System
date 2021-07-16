@@ -52,7 +52,7 @@ public class AdminController {
         return "admin/users";
     }
 
-    //view user page
+    //view add user page
     @RequestMapping("/admindashboard/user/add")
     public String viewAddUserPage(Model model){
         return "admin/user_add";

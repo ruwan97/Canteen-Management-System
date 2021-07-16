@@ -37,24 +37,6 @@ public class User_controller {
     }
 
 
-    //login user
-    @PostMapping("/signin")
-    public String login(@RequestParam("email") String u_email, @RequestParam("password") String U_password){
-        User user = user_service.loginUser(u_email, U_password);
-        if (Objects.nonNull(user)) {
-            Integer U_role = user.getUser_role();
-            if (U_role == 1 ) {
-                return "redirect:/admindashboard";
-            }
-            else {
-                return "redirect:/userdashboard";
-            }
-        }
-        else {
-            return "redirect:login";
-        }
-    }
-
     @RequestMapping("/userdashboard")
     public String viewUserDashboard(Model model){
         return "user/user_dashboard";
