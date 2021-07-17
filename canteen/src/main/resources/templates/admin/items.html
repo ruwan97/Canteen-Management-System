@@ -279,7 +279,7 @@
                                     <tbody>
                                         <tr th:each="item:${viewitems}">
                                             <td th:text="${item.getItem_id()}"></td>
-                                            <td th:text="${item.getItem_image()}"></td>
+                                            <td><img alt="" th:src="${'data:image/jpeg;base64,'+{item.getItem_image()}}" style="width: 80px; height: 80px;"></td>
                                             <td th:text="${item.getItem_name()}"></td>
                                             <td th:text="${item.getUnit_price()}"></td>
 <!--                                            <td th:text="${item.getQuantity()}"></td>-->

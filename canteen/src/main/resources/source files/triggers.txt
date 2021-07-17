@@ -330,7 +330,7 @@ DECLARE operation VARCHAR(8);
 DECLARE changedat DATETIME;
 
 SET itm_id =  new.item_id;
-SET data  = CONCAT_WS(', ', new.item_name, new.unit_price, new.item_image);
+SET data  = CONCAT_WS(', ', new.item_name, new.unit_price);
 SET user = CURRENT_USER;
 SET operation = 'INSERT';
 SET changedat = now();
@@ -357,7 +357,7 @@ DECLARE operation VARCHAR(8);
 DECLARE changedat DATETIME;
 
 SET itm_id =  new.item_id;
-SET data  = CONCAT_WS(', ', new.item_name, new.unit_price, new.item_image);
+SET data  = CONCAT_WS(', ', new.item_name, new.unit_price);
 SET user = CURRENT_USER;
 SET operation = 'UPDATE';
 SET changedat = now();
@@ -385,7 +385,7 @@ DECLARE operation VARCHAR(8);
 DECLARE changedat DATETIME;
 
 SET itm_id =  old.item_id;
-SET data  = CONCAT_WS(', ', old.item_name, old.unit_price, old.item_image);
+SET data  = CONCAT_WS(', ', old.item_name, old.unit_price);
 SET user = CURRENT_USER;
 SET operation = 'DELETE';
 SET changedat = now();

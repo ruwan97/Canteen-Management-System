@@ -1,0 +1,74 @@
+1. function
+
+DROP FUNCTION IF EXISTS calculate_total_transaction_amount_function;
+DELIMITER //
+CREATE FUNCTION calculate_total_transaction_amount_function() RETURNS FLOAT DETERMINISTIC
+BEGIN
+DECLARE transactions_amount FLOAT DEFAULT 0.0;
+SELECT SUM(order_amount) INTO transactions_amount 
+FROM `transaction` 
+WHERE DATE(`transaction_date`) = DATE(NOW()) 
+GROUP BY `transaction_date`;
+RETURN (transactions_amount);
+END//
+DELIMITER ;
+
+
+
+2. event
+
+SET GLOBAL EVENT_SCHEDULER = ON;
+DROP EVENT IF EXISTS daily_transaction_summary_event;
+CREATE EVENT daily_transaction_summary_event
+ON SCHEDULE EVERY 1 DAY
+STARTS CONCAT(DATE(NOW()), ' 23:59:59')
+ON COMPLETION PRESERVE
+DO
+INSERT INTO `transactions_summary`
+(`date`, `total_amount`, `transactions_count`)
+VALUES
+(DATE(NOW()), calculate_total_transaction_amount_function(), calculate_daily_transactions_count_function());
+
+
+
+
+3. trigger
+
+///user log
+
+DROP TRIGGER IF EXISTS after_insert_user_trigger;
+DELIMITER //
+CREATE TRIGGER after_insert_user_trigger
+AFTER INSERT 
+ON user 
+FOR EACH ROW
+BEGIN
+
+DECLARE user_data VARCHAR(255);
+DECLARE user VARCHAR(50);
+DECLARE operation VARCHAR(8);
+DECLARE changedat DATETIME;
+
+SET user_data  = CONCAT_WS(', ', new.user_id, new.user_name, new.user_email, new.user_password, new.user_role, new.user_contact);
+SET user = CURRENT_USER;
+SET operation = 'INSERT';
+SET changedat = now();
+
+INSERT INTO user_log (user_details, user, operation, changed_at)
+VALUES
+(user_data, user, operation, changedat);
+END//
+DELIMITER ;
+
+
+//after insert order table and update inventory
+
+DROP TRIGGER IF EXISTS inv_insert_order_trigger;
+DELIMITER //
+CREATE TRIGGER inv_insert_order_trigger
+AFTER INSERT ON orders
+FOR EACH ROW
+BEGIN
+UPDATE `inventory` SET `quantity`= (`quantity`- NEW.`quantity`) WHERE `item_id` = NEW.`item_id` ;
+END//
+DELIMITER ; 

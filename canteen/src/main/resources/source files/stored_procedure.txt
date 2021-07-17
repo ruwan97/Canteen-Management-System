@@ -31,8 +31,9 @@ CALL ad_user_account_update_procedure('test5', 'nuwan','nuwan@gmail.com', 1);
 
 
 DROP PROCEDURE IF EXISTS user_account_create_procedure;
+
 DELIMITER //
-CREATE PROCEDURE user_account_create_procedure(IN id VARCHAR(6), IN name VARCHAR(255), IN email VARCHAR(100), IN password VARCHAR(50), IN role INT(1), IN contact INT(10), IN image VARCHAR(255)) 
+CREATE PROCEDURE user_account_create_procedure(IN id VARCHAR(6), IN name VARCHAR(255), IN email VARCHAR(100), IN password VARCHAR(50), IN role INT(1), IN contact INT(10), IN image BLOB) 
 BEGIN
 INSERT INTO `user`(`user_id`, `user_name`, `user_email`, user_password, `user_role`, `user_contact`, `user_image`) VALUES (id , name, email, password, role, contact, image);
 END//
@@ -54,7 +55,7 @@ CALL user_account_delete_procedure('TG0004');
 
 DROP PROCEDURE IF EXISTS user_account_update_procedure;
 DELIMITER //
-CREATE PROCEDURE user_account_update_procedure(IN id VARCHAR(6), IN name VARCHAR(255), IN email VARCHAR(100), IN password VARCHAR(50), IN role INT(1), IN contact INT(10), IN image VARCHAR(255)) 
+CREATE PROCEDURE user_account_update_procedure(IN id VARCHAR(6), IN name VARCHAR(255), IN email VARCHAR(100), IN password VARCHAR(50), IN role INT(1), IN contact INT(10), IN image BLOB) 
 BEGIN
 UPDATE `user` 
 SET 
@@ -118,7 +119,7 @@ CALL update_inventory_procedure(1, 'itm001', 500);
 
 DROP PROCEDURE IF EXISTS insert_item_procedure;
 DELIMITER //
-CREATE PROCEDURE insert_item_procedure(IN itm_id VARCHAR(6), IN itm_name VARCHAR(255), IN price FLOAT(2), IN image VARCHAR(255)) 
+CREATE PROCEDURE insert_item_procedure(IN itm_id VARCHAR(6), IN itm_name VARCHAR(255), IN price FLOAT(2), IN image BLOB) 
 BEGIN
 INSERT INTO `item`(`item_id`, `item_name`, `unit_price`, `item_image`) VALUES (itm_id , itm_name, price, image);
 END//
@@ -140,7 +141,7 @@ CALL delete_item_procedure('itm010');
 
 DROP PROCEDURE IF EXISTS update_item_procedure;
 DELIMITER //
-CREATE PROCEDURE update_item_procedure(IN itm_id VARCHAR(6), IN itm_name VARCHAR(255), IN price FLOAT(2), IN image VARCHAR(255)) 
+CREATE PROCEDURE update_item_procedure(IN itm_id VARCHAR(6), IN itm_name VARCHAR(255), IN price FLOAT(2), IN image BLOB) 
 BEGIN
 UPDATE `item` 
 SET 

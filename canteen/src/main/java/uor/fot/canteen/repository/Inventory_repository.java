@@ -19,7 +19,7 @@ public interface Inventory_repository extends JpaRepository<Inventory, Integer> 
     void inventoryAdd(String item_id, Integer quantity);
 
     //admin view items from inventory
-    @Query(value = "SELECT *FROM ad_view_inventory", nativeQuery = true)
+    @Query(value = "SELECT *FROM inventory", nativeQuery = true)
     List<Inventory> getAllInventoryItems();
 
     //admin update inventory

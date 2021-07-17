@@ -237,17 +237,15 @@
                                         <th>Item Image</th>
                                         <th>Item Name</th>
                                         <th>Unit Price</th>
-<!--                                        <th>Total Quantity</th>-->
                                         <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr th:each="item:${viewitems}">
                                         <td th:text="${item.getItem_id()}"></td>
-                                        <td th:text="${item.getItem_image()}"></td>
+                                        <td><img alt="" th:src="${'data:image/jpeg;base64,'+{item.getItem_image()}}" style="width: 80px; height: 80px;"></td>
                                         <td th:text="${item.getItem_name()}"></td>
                                         <td th:text="${item.getUnit_price()}"></td>
-<!--                                        <td th:text="${item.getQuantity()}"></td>-->
                                         <td class="text-center" >
                                             <form action="" method="post">
                                                 <a th:href="@{/userdashboard/order/add/{id}(id = ${item.getItem_id()})}" class="btn btn-primary btn-sm rounded">

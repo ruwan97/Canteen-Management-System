@@ -112,13 +112,11 @@ public class AdminController {
 
     //admin add item
     @RequestMapping("/additem")
-    public String addItem(@RequestParam("id") String item_id, @RequestParam("name") String item_name, @RequestParam("price") Float unit_price, @RequestParam("image") String item_image)
+    public String addItem(@RequestParam("id") String item_id, @RequestParam("name") String item_name, @RequestParam("price") Float unit_price, @RequestParam("image") MultipartFile item_image)
     {
-        boolean result = item_service.addItem(item_id, item_name, unit_price, item_image);
-        if (result)
-            return "redirect:/admindashboard/items/view";
-        else
-            return "redirect:/admindashboard/item/add";
+        item_service.addItem(item_id, item_name, unit_price, item_image);
+
+        return "redirect:/admindashboard/items/view";
     }
 
     //admin view items
@@ -149,7 +147,7 @@ public class AdminController {
 
     //admin update item
     @PostMapping("/itemupdate")
-    public String adUdpdateItems(@RequestParam("id") String item_id, @RequestParam("name") String item_name, @RequestParam("price") Float unit_price, @RequestParam("image") String item_image){
+    public String adUdpdateItems(@RequestParam("id") String item_id, @RequestParam("name") String item_name, @RequestParam("price") Float unit_price, @RequestParam("image") MultipartFile item_image){
         item_service.adItemUpdate(item_id, item_name, unit_price, item_image);
         return "redirect:/admindashboard/items/view";
     }
