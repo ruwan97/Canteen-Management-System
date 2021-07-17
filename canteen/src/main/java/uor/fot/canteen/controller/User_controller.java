@@ -85,7 +85,7 @@ public class User_controller {
     {
         boolean result = orders_service.addOrder(user_id, item_id,quantity);
         if (result)
-            return "redirect:/userdashboard";
+            return "redirect:/userdashboard/order/view";
         else
             return "user/user_add_order";
     }
