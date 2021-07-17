@@ -266,7 +266,10 @@
                                 <strong>Update User</strong>
                             </div>
                             <div class="card-body card-block">
-                                <form th:action="@{/userupdate}" method="post" class="">
+                                <form th:action="@{/userupdate}" enctype="multipart/form-data" method="post" class="">
+
+                                    <center><img alt="" th:src="${'data:image/jpeg;base64,'+{updateuser.getUser_image()}}" style="width: 80px; height: 80px;"></center>
+
                                     <div class="form-group"><label for="id" class=" form-control-label">User Id</label><input type="text" id="id" name="id" th:value="${updateuser.getUser_id()}" readonly class="form-control"></div>
 
                                     <div class="form-group"><label for="name" class=" form-control-label">User Name</label><input type="text" id="name" name="name" th:value="${updateuser.getUser_name()}" class="form-control"></div>

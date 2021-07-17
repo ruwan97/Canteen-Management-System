@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @Transactional
@@ -55,8 +56,20 @@ public class User_service {
     }
 
     //update user
-    public void userUpdate(String u_id, String u_name, String U_email, String u_password,  Integer u_role, Integer u_contact, String u_image){
-        user_repository.adUpdateUser(u_id, u_name, U_email, u_password,  u_role, u_contact, u_image);
+    public void userUpdate(String u_id, String u_name, String U_email, String u_password,  Integer u_role, Integer u_contact, MultipartFile u_image){
+
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(u_image.getOriginalFilename()));
+        User user = new User();
+
+        if (fileName.contains("..")){
+            System.out.println("not a valid file");
+        }
+        try {
+            user.setUser_image(Base64.getEncoder().encodeToString(u_image.getBytes()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        user_repository.adUpdateUser(u_id, u_name, U_email, u_password,  u_role, u_contact, user.getUser_image());
     }
 
     //get user

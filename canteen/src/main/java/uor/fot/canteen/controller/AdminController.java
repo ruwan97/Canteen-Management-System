@@ -97,7 +97,7 @@ public class AdminController {
 
     //admin update user
     @PostMapping("/userupdate")
-    public String adUpdateUsers(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("password") String u_password, @RequestParam("role") Integer u_role, @RequestParam("contact") Integer u_contact, @RequestParam("image") String u_image){
+    public String adUpdateUsers(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("password") String u_password, @RequestParam("role") Integer u_role, @RequestParam("contact") Integer u_contact, @RequestParam("image") MultipartFile u_image){
         user_service.userUpdate(u_id, u_name, u_email, u_password, u_role, u_contact, u_image);
         return "redirect:/admindashboard/user/view";
     }

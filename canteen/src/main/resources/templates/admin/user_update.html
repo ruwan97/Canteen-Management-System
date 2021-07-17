@@ -269,7 +269,7 @@
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-<!--                                            <th>Image</th>-->
+                                            <th>Image</th>
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Role</th>
@@ -279,8 +279,8 @@
                                     </thead>
                                     <tbody>
                                         <tr th:each="user:${viewusers}">
-<!--                                            <td th:text="${user.getUser_image()}"></td>-->
                                             <td th:text="${user.getUser_id()}"></td>
+                                            <td><img alt="" th:src="${'data:image/jpeg;base64,'+{user.getUser_image()}}" style="width: 80px; height: 80px;"></td>
                                             <td th:text="${user.getUser_name()}"></td>
                                             <td th:text="${user.getUser_email()}"></td>
                                             <td th:text="${user.getUser_role()}"></td>
