@@ -106,4 +106,10 @@ public class HomeController {
 
     }
 
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        request.getSession().invalidate();
+        return "redirect:/";
+    }
+
 }

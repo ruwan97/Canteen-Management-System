@@ -242,7 +242,7 @@ DROP PROCEDURE IF EXISTS user_view_orders_procedure;
 DELIMITER //
 CREATE PROCEDURE user_view_orders_procedure(IN u_id VARCHAR(6))
 BEGIN
-SELECT o.`user_id`, o.`item_id`, i.`item_name`, i.`unit_price`, o.`quantity`, o.`order_amount`, o.`date_and_time`, i.`item_image`
+SELECT o.`order_id`, o.`user_id`, o.`item_id`, i.`item_name`, i.`unit_price`, o.`quantity`, o.`order_amount`, o.`date_and_time`, i.`item_image`
 FROM `orders` o, `item` i  
 WHERE  o.`item_id` = i.`item_id` AND o.`user_id` = u_id;
 END//
@@ -268,9 +268,50 @@ DELIMITER ;
 CALL user_view_invoice_procedure(1);
 
 
+//get user id
+
+DROP PROCEDURE IF EXISTS get_user_id_procedure;
+DELIMITER //
+CREATE PROCEDURE get_user_id_procedure(IN u_id VARCHAR(6))
+BEGIN
+SELECT `user_id`
+FROM user  
+WHERE  `user_id` = u_id;
+END//
+DELIMITER ;
+
+CALL get_user_id_procedure('TG0001');
 
 
 
+//get user name
+
+DROP PROCEDURE IF EXISTS get_user_name_procedure;
+DELIMITER //
+CREATE PROCEDURE get_user_name_procedure(IN u_id VARCHAR(6))
+BEGIN
+SELECT `user_name`
+FROM user  
+WHERE  `user_id` = u_id;
+END//
+DELIMITER ;
+
+CALL get_user_name_procedure('TG0002');
+
+
+//get user image
+
+DROP PROCEDURE IF EXISTS get_user_image_procedure;
+DELIMITER //
+CREATE PROCEDURE get_user_image_procedure(IN u_id VARCHAR(6))
+BEGIN
+SELECT `user_image`
+FROM user  
+WHERE  `user_id` = u_id;
+END//
+DELIMITER ;
+
+CALL get_user_image_procedure('TG0002');
 
 
 
