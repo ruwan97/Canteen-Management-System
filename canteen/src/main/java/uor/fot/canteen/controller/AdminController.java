@@ -302,13 +302,4 @@ public class AdminController {
         return "admin/transaction_log";
     }
 
-
-
-
-
-
-
-
-
-
 }

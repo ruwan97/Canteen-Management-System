@@ -46,8 +46,8 @@ public class User_service {
 //    }
 
     //login user
-    public User loginUser(String u_email, String U_password) {
-        return user_repository.availableUser(u_email, U_password);
+    public User loginUser(String u_id, String U_password) {
+        return user_repository.availableUser(u_id, U_password);
     }
 
     //view all users

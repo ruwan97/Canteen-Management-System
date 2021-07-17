@@ -18,8 +18,8 @@ public interface User_repository extends JpaRepository<User, String> {
     void userRegister(String user_id, String user_name, String user_email, String user_password, Integer user_role, String user_contact, String user_image);
 
     //login user
-    @Query(value = "SELECT u FROM User u WHERE u.user_email=?1 AND u.user_password=?2")
-    User availableUser(String user_email, String user_password);
+    @Query(value = "SELECT u FROM User u WHERE u.user_id=?1 AND u.user_password=?2")
+    User availableUser(String user_id, String user_password);
 
     //get all users
     @Query(value = "SELECT *FROM ad_view_users", nativeQuery = true)

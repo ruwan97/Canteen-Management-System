@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import uor.fot.canteen.model.User;
 import uor.fot.canteen.service.User_service;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -59,9 +62,35 @@ public class HomeController {
 
 
     //login user
+//    @PostMapping("/signin")
+//    public String login(@RequestParam("email") String u_email, @RequestParam("password") String U_password){
+//        User user = user_service.loginUser(u_email, U_password);
+//        if (Objects.nonNull(user)) {
+//            Integer U_role = user.getUser_role();
+//            if (U_role == 1 ) {
+//                return "redirect:/admindashboard";
+//            }
+//            else {
+//                return "redirect:/userdashboard";
+//            }
+//        }
+//        else {
+//            return "redirect:login";
+//        }
+//    }
+
     @PostMapping("/signin")
-    public String login(@RequestParam("email") String u_email, @RequestParam("password") String U_password){
-        User user = user_service.loginUser(u_email, U_password);
+    public String login(@RequestParam("id") String u_id, @RequestParam("password") String U_password, Model model, HttpServletRequest request){
+
+        List<String> user_id = (List<String>) request.getSession().getAttribute("SESSION_UID");
+        if (user_id == null){
+            user_id = new ArrayList<>();
+            request.getSession().setAttribute("SESSION_UID", user_id);
+        }
+        user_id.add(u_id);
+        request.getSession().setAttribute("SESSION_UID", user_id);
+
+        User user = user_service.loginUser(u_id, U_password);
         if (Objects.nonNull(user)) {
             Integer U_role = user.getUser_role();
             if (U_role == 1 ) {
@@ -74,6 +103,7 @@ public class HomeController {
         else {
             return "redirect:login";
         }
+
     }
 
 }

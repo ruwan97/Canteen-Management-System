@@ -6,10 +6,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import uor.fot.canteen.model.Item;
+import uor.fot.canteen.model.Orders;
 import uor.fot.canteen.service.Item_service;
 import uor.fot.canteen.service.Orders_service;
 import uor.fot.canteen.service.User_service;
 
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -41,10 +44,20 @@ public class User_controller {
 
 
     @RequestMapping("/userdashboard/order/view")
-    public String viewUserOrders(Model model){
+    public String viewUserOrders(Model model, HttpSession session){
+
+        List<String> user_id = (List<String>) session.getAttribute("SESSION_UID");
+        if (user_id == null) {
+            user_id = new ArrayList<>();
+        }
+
+        for (String u_id : user_id) {
+            List<Orders> userOrders = orders_service.getUserOrder(u_id);
+            model.addAttribute("userOrders",userOrders);
+        }
+
         return "user/user_view_orders";
     }
-    //user update profile
 
 
 
