@@ -92,11 +92,18 @@ public class HomeController {
 
         User user = user_service.loginUser(u_id, U_password);
         if (Objects.nonNull(user)) {
+            String userImage = user_service.getUserImage(u_id);
+            model.addAttribute("userImage", userImage);
+            String userName = user_service.getUserName(u_id);
+            model.addAttribute("userName", userName);
+
             Integer U_role = user.getUser_role();
             if (U_role == 1 ) {
+
                 return "redirect:/admindashboard";
             }
             else {
+
                 return "redirect:/userdashboard";
             }
         }

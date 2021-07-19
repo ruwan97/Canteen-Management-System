@@ -82,4 +82,20 @@ public class User_service {
         user_repository.userDelete(user_id);
         return true;
     }
+
+    //get user image for profile
+    public String getUserImage(String user_id){
+        String userProfile = user_repository.getUserImage(user_id);
+        return userProfile;
+    }
+
+    //get user name
+    public String getUserName(String user_id){
+        return user_repository.getUserName(user_id);
+    }
+
+    //get user id
+    public String getUserId(String user_id){
+        return user_repository.getUserId(user_id);
+    }
 }

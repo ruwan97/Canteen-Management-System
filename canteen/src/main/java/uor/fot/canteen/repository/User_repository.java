@@ -3,6 +3,7 @@ package uor.fot.canteen.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import uor.fot.canteen.model.User;
 
@@ -35,4 +36,18 @@ public interface User_repository extends JpaRepository<User, String> {
     @Procedure(procedureName = "user_account_delete_procedure")
     void userDelete(String user_id);
 
+    //get user image for profile
+    @Transactional
+    @Query(nativeQuery = true,value = "call get_user_image_procedure(null)")
+    String getUserImage(@Param("user_id") String user_id);
+
+    //get user name
+    @Transactional
+    @Query(nativeQuery = true, value = "call get_user_name_procedure(?)")
+    String getUserName(@Param("user_id")String user_id);
+
+    //get user id
+    @Transactional
+    @Query(nativeQuery = true, value = "call get_user_id_procedure(?)")
+    String getUserId(@Param("user_id")String user_id);
 }
