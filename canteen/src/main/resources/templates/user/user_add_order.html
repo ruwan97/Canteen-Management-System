@@ -242,7 +242,9 @@
 
                                     <div class="form-group"><label for="name" class=" form-control-label">Item Id</label><input type="text" id="name" name="item_id" th:value="${viewitems.getItem_id()}" class="form-control" readonly></div>
 
-                                    <div class="form-group"><label for="quantity" class=" form-control-label">Quantity</label><input type="text" id="quantity" name="quantiry" placeholder="Enter Quantity.." class="form-control"></div>
+                                    <div class="form-group"><label for="item" class=" form-control-label">Item Name</label><input type="text" id="item" name="item_name" th:value="${viewitems.getItem_name()}" class="form-control" readonly></div>
+
+                                    <div class="form-group"><label for="quantity" class=" form-control-label">Quantity</label><input type="number" id="quantity" name="quantity" placeholder="Enter Quantity.." class="form-control"></div>
 
                                     <button type="submit" class="btn btn-primary btn-sm">
                                         <i class="fa fa-dot-circle-o"></i> Submit

@@ -85,8 +85,7 @@ public class User_service {
 
     //get user image for profile
     public String getUserImage(String user_id){
-        String userProfile = user_repository.getUserImage(user_id);
-        return userProfile;
+        return user_repository.getUserImage(user_id);
     }
 
     //get user name

@@ -245,6 +245,7 @@
                                             <th>Quantity</th>
                                             <th>Amount</th>
                                             <th>Date and Time</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -255,6 +256,13 @@
                                             <td th:text="${userorder.getQuantity()}"></td>
                                             <td th:text="${userorder.getOrder_amount()}"></td>
                                             <td th:text="${userorder.getDate_and_time()}"></td>
+                                            <td class="text-center" >
+                                                <form action="" method="post">
+                                                    <a th:href="@{/userdashboard/order/buyform}" class="btn btn-primary btn-sm rounded">
+                                                        <i class="fa fa-paypal"> Pay Now</i>
+                                                    </a>
+                                                </form>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>

@@ -253,7 +253,7 @@ CALL user_view_orders_procedure('TG0002');
 
 
 //// 
-user_view_invoce
+user_view_invoice
 
 DROP PROCEDURE IF EXISTS user_view_invoice_procedure;
 DELIMITER //

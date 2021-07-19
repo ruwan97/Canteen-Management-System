@@ -38,7 +38,7 @@ public interface User_repository extends JpaRepository<User, String> {
 
     //get user image for profile
     @Transactional
-    @Query(nativeQuery = true,value = "call get_user_image_procedure(null)")
+    @Query(nativeQuery = true,value = "call get_user_image_procedure(?)")
     String getUserImage(@Param("user_id") String user_id);
 
     //get user name

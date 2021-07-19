@@ -86,7 +86,7 @@ public class User_controller {
 
     //user add order
     @PostMapping("/addOrder")
-    public String adOrder(@RequestParam("u_id") String user_id, @RequestParam("item_id") String item_id, @RequestParam("quantiry") Integer quantity)
+    public String adOrder(@RequestParam("u_id") String user_id, @RequestParam("item_id") String item_id, @RequestParam("quantity") Integer quantity)
     {
         boolean result = orders_service.addOrder(user_id, item_id,quantity);
         if (result)
@@ -109,6 +109,11 @@ public class User_controller {
         }
 
         return "user/user_view_invoice";
+    }
+
+    @RequestMapping("/userdashboard/order/buyform")
+    public String viewPaymentForm(Model model){
+        return "user/payment_form";
     }
 
 }
