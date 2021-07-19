@@ -257,15 +257,15 @@ user_view_invoce
 
 DROP PROCEDURE IF EXISTS user_view_invoice_procedure;
 DELIMITER //
-CREATE PROCEDURE user_view_invoice_procedure(IN o_id VARCHAR(6))
+CREATE PROCEDURE user_view_invoice_procedure(IN u_id VARCHAR(6))
 BEGIN
-SELECT o.`user_id`, o.`item_id`, i.`item_name`, i.`unit_price`, o.`quantity`, o.`order_amount`, o.`date_and_time`
-FROM `orders` o, `item` i  
-WHERE  o.`item_id` = i.`item_id` AND o.`order_id` = o_id;
+SELECT `transaction_id`, `order_id`, `user_id`, `item_id`, `order_amount`, `transaction_date`
+FROM `transaction`  
+WHERE `user_id` = u_id;
 END//
 DELIMITER ;
 
-CALL user_view_invoice_procedure(1);
+CALL user_view_invoice_procedure('TG0002');
 
 
 //get user id

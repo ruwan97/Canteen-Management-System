@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 19, 2021 at 02:13 PM
+-- Generation Time: Jul 19, 2021 at 03:32 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -132,10 +132,10 @@ WHERE `user_id` = id;
 END$$
 
 DROP PROCEDURE IF EXISTS `user_view_invoice_procedure`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `user_view_invoice_procedure` (IN `o_id` VARCHAR(6))  BEGIN
-SELECT o.`user_id`, o.`item_id`, i.`item_name`, i.`unit_price`, o.`quantity`, o.`order_amount`, o.`date_and_time`
-FROM `orders` o, `item` i  
-WHERE  o.`item_id` = i.`item_id` AND o.`order_id` = o_id;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `user_view_invoice_procedure` (IN `u_id` VARCHAR(6))  BEGIN
+SELECT `transaction_id`, `order_id`, `user_id`, `item_id`, `order_amount`, `transaction_date`
+FROM `transaction`  
+WHERE `user_id` = u_id;
 END$$
 
 DROP PROCEDURE IF EXISTS `user_view_orders_procedure`$$
@@ -619,8 +619,6 @@ INSERT INTO `orders` (`order_id`, `user_id`, `item_id`, `quantity`, `order_amoun
 (49, 'TG0002', 'itm001', 5, 150, '2021-07-17 18:41:30'),
 (50, 'TG0003', 'itm005', 3, 75, '2021-07-17 18:44:00'),
 (46, 'TG0004', 'itm005', 3, 75, '2021-07-17 15:25:57'),
-(45, 'TG0005', 'itm002', 1, 40, '2021-07-17 07:53:13'),
-(44, 'TG0003', 'itm006', 6, 600, '2021-07-17 07:36:53'),
 (52, 'TG0005', 'itm002', 3, 120, '2021-07-17 19:57:16'),
 (53, 'TG0003', 'itm003', 5, 50, '2021-07-17 20:30:43'),
 (51, 'TG0006', 'itm008', 2, 70, '2021-07-17 19:55:15'),
@@ -719,7 +717,7 @@ CREATE TABLE IF NOT EXISTS `order_log` (
   `changed_at` datetime DEFAULT NULL,
   PRIMARY KEY (`log_id`),
   KEY `order_log_check` (`log_id`,`user`,`operation`)
-) ENGINE=MyISAM AUTO_INCREMENT=122 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=124 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `order_log`
@@ -844,7 +842,9 @@ INSERT INTO `order_log` (`log_id`, `order_id`, `order_details`, `user`, `operati
 (118, 52, 'TG0005, itm002, 3, 120, 2021-07-18 01:27:16', 'root@localhost', 'INSERT', '2021-07-18 01:27:16'),
 (119, 43, 'TG0002, itm005, 3, 75, 2021-07-17 12:52:31', 'root@localhost', 'DELETE', '2021-07-18 01:28:17'),
 (120, 53, 'TG0003, itm003, 5, 50, 2021-07-18 02:00:43', 'root@localhost', 'INSERT', '2021-07-18 02:00:43'),
-(121, 54, 'TG0003, itm007, 5, 150, 2021-07-19 16:07:56', 'root@localhost', 'INSERT', '2021-07-19 16:07:56');
+(121, 54, 'TG0003, itm007, 5, 150, 2021-07-19 16:07:56', 'root@localhost', 'INSERT', '2021-07-19 16:07:56'),
+(122, 44, 'TG0003, itm006, 6, 600, 2021-07-17 13:06:53', 'root@localhost', 'DELETE', '2021-07-19 19:47:22'),
+(123, 45, 'TG0005, itm002, 1, 40, 2021-07-17 13:23:13', 'root@localhost', 'DELETE', '2021-07-19 19:47:42');
 
 -- --------------------------------------------------------
 
@@ -872,7 +872,7 @@ CREATE TABLE IF NOT EXISTS `spring_session` (
 --
 
 INSERT INTO `spring_session` (`PRIMARY_ID`, `SESSION_ID`, `CREATION_TIME`, `LAST_ACCESS_TIME`, `MAX_INACTIVE_INTERVAL`, `EXPIRY_TIME`, `PRINCIPAL_NAME`) VALUES
-('b60b935f-beed-484b-9ef8-6a57bae6300a', '235b93ec-db02-4ac6-8d05-0a34a45f5ea2', 1626703830754, 1626703838479, 1800, 1626705638479, NULL);
+('1d124094-82f5-4833-89bc-a7f83e62d64f', 'd0d5db50-a0f3-4dd7-a452-0b0049514306', 1626708268824, 1626708636542, 1800, 1626710436542, NULL);
 
 -- --------------------------------------------------------
 
@@ -893,7 +893,7 @@ CREATE TABLE IF NOT EXISTS `spring_session_attributes` (
 --
 
 INSERT INTO `spring_session_attributes` (`SESSION_PRIMARY_ID`, `ATTRIBUTE_NAME`, `ATTRIBUTE_BYTES`) VALUES
-('b60b935f-beed-484b-9ef8-6a57bae6300a', 'SESSION_UID', 0xaced0005737200136a6176612e7574696c2e41727261794c6973747881d21d99c7619d03000149000473697a6578700000000177040000000174000654473030303278);
+('1d124094-82f5-4833-89bc-a7f83e62d64f', 'SESSION_UID', 0xaced0005737200136a6176612e7574696c2e41727261794c6973747881d21d99c7619d03000149000473697a6578700000000277040000000274000654473030303274000654473030303378);
 
 -- --------------------------------------------------------
 
@@ -914,7 +914,7 @@ CREATE TABLE IF NOT EXISTS `transaction` (
   KEY `user_id` (`user_id`),
   KEY `item_id` (`item_id`),
   KEY `transaction_check` (`transaction_id`,`order_id`,`transaction_date`)
-) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transaction`
@@ -949,7 +949,9 @@ INSERT INTO `transaction` (`transaction_id`, `order_id`, `user_id`, `item_id`, `
 (29, 39, 'TG0004', 'itm004', 308, '2021-07-17'),
 (30, 47, 'TG0004', 'itm004', 100, '2021-07-17'),
 (31, 40, 'TG0004', 'itm001', 60, '2021-07-17'),
-(32, 43, 'TG0002', 'itm005', 75, '2021-07-18');
+(32, 43, 'TG0002', 'itm005', 75, '2021-07-18'),
+(33, 44, 'TG0003', 'itm006', 600, '2021-07-19'),
+(34, 45, 'TG0005', 'itm002', 40, '2021-07-19');
 
 --
 -- Triggers `transaction`
@@ -1028,7 +1030,7 @@ CREATE TABLE IF NOT EXISTS `transaction_log` (
   `changed_at` datetime DEFAULT NULL,
   PRIMARY KEY (`log_id`),
   KEY `transaction_log_check` (`log_id`,`transaction_id`,`user`,`operation`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transaction_log`
@@ -1055,7 +1057,9 @@ INSERT INTO `transaction_log` (`log_id`, `transaction_id`, `transaction_details`
 (18, 29, '39, TG0004, itm004, 308, 2021-07-17', 'root@localhost', 'INSERT', '2021-07-17 23:11:13'),
 (19, 30, '47, TG0004, itm004, 100, 2021-07-17', 'root@localhost', 'INSERT', '2021-07-17 23:11:40'),
 (20, 31, '40, TG0004, itm001, 60, 2021-07-17', 'root@localhost', 'INSERT', '2021-07-17 23:17:44'),
-(21, 32, '43, TG0002, itm005, 75, 2021-07-18', 'root@localhost', 'INSERT', '2021-07-18 01:28:17');
+(21, 32, '43, TG0002, itm005, 75, 2021-07-18', 'root@localhost', 'INSERT', '2021-07-18 01:28:17'),
+(22, 33, '44, TG0003, itm006, 600, 2021-07-19', 'root@localhost', 'INSERT', '2021-07-19 19:47:22'),
+(23, 34, '45, TG0005, itm002, 40, 2021-07-19', 'root@localhost', 'INSERT', '2021-07-19 19:47:42');
 
 -- --------------------------------------------------------
 
