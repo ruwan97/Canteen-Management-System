@@ -238,7 +238,7 @@
                             </div>
                             <div class="card-body card-block">
                                 <form th:action="@{/addOrder}" method="post" class="">
-                                    <div class="form-group"><label for="id" class=" form-control-label">User Id</label><input type="text" id="id" name="u_id" th:text="${userId}" class="form-control"></div>
+                                    <div class="form-group"><label for="id" class=" form-control-label">User Id</label><input type="text" id="id" name="u_id" th:text="${userId}" placeholder="Enter User Id.." class="form-control"></div>
 
                                     <div class="form-group"><label for="name" class=" form-control-label">Item Id</label><input type="text" id="name" name="item_id" th:value="${viewitems.getItem_id()}" class="form-control" readonly></div>
 
