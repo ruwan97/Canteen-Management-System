@@ -2,7 +2,6 @@ package uor.fot.canteen.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uor.fot.canteen.model.Orders;
 import uor.fot.canteen.model.Transaction;
 import uor.fot.canteen.repository.Transaction_repository;
 
@@ -25,5 +24,12 @@ public class Transaction_service {
     public boolean confirmOrder(Integer order_id){
         transaction_repository.cinfirmOrder(order_id);
         return true;
+    }
+
+    //user view invoice
+    public List<Transaction> getUserInvoice(String u_id){
+        List<Transaction> userInvoice = transaction_repository.userInvoice(u_id);
+
+        return userInvoice;
     }
 }

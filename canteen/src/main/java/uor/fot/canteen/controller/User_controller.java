@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import uor.fot.canteen.model.Item;
 import uor.fot.canteen.model.Orders;
+import uor.fot.canteen.model.Transaction;
 import uor.fot.canteen.service.Item_service;
 import uor.fot.canteen.service.Orders_service;
+import uor.fot.canteen.service.Transaction_service;
 import uor.fot.canteen.service.User_service;
 
 import javax.servlet.http.HttpSession;
@@ -26,6 +28,9 @@ public class User_controller {
 
     @Autowired
     private Orders_service orders_service;
+
+    @Autowired
+    private Transaction_service transaction_service;
 
     //register user
     @PostMapping("/signup")
@@ -88,6 +93,22 @@ public class User_controller {
             return "redirect:/userdashboard/order/view";
         else
             return "user/user_add_order";
+    }
+
+    @RequestMapping("/userdashboard/invoice/view")
+    public String viewUserInvoice(Model model, HttpSession session){
+
+        List<String> user_id = (List<String>) session.getAttribute("SESSION_UID");
+        if (user_id == null) {
+            user_id = new ArrayList<>();
+        }
+
+        for (String u_id : user_id) {
+            List<Transaction> userInvoice = transaction_service.getUserInvoice(u_id);
+            model.addAttribute("userInvoice", userInvoice);
+        }
+
+        return "user/user_view_invoice";
     }
 
 }
