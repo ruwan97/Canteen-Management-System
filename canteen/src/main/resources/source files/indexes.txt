@@ -1,0 +1,25 @@
+CREATE INDEX user_check ON user(user_id, user_name, user_email);
+
+CREATE INDEX item_check ON item(item_id, item_name);
+
+CREATE INDEX inventory_check ON inventory(inv_id, item_id);
+
+CREATE INDEX orders_check ON orders(user_id, item_id, date_and_time);
+
+CREATE INDEX transaction_check ON transaction(transaction_id, order_id, transaction_date);
+
+CREATE INDEX transactions_summary_check ON transactions_summary(date);
+
+
+CREATE INDEX user_log_check ON user_log(log_id, user, operation);
+
+CREATE INDEX order_log_check ON order_log(log_id, user, operation);
+
+CREATE INDEX item_log_check ON item_log(log_id, item_id, user, operation);
+
+CREATE INDEX inventory_log_check ON inventory_log(log_id, inv_id, user, operation);
+
+CREATE INDEX transaction_log_check ON transaction_log(log_id, transaction_id, user, operation);
+
+DROP INDEX item_log_check ON item_log;
+SHOW INDEX FROM user FROM cms;

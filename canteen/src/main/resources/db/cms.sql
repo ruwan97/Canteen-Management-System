@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 17, 2021 at 08:23 PM
+-- Generation Time: Jul 19, 2021 at 02:13 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -233,7 +233,8 @@ CREATE TABLE IF NOT EXISTS `inventory` (
   `item_id` varchar(6) DEFAULT NULL,
   `quantity` int(5) DEFAULT NULL,
   PRIMARY KEY (`inv_id`),
-  KEY `item_id` (`item_id`)
+  KEY `item_id` (`item_id`),
+  KEY `inventory_check` (`inv_id`,`item_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=latin1;
 
 --
@@ -243,14 +244,14 @@ CREATE TABLE IF NOT EXISTS `inventory` (
 INSERT INTO `inventory` (`inv_id`, `item_id`, `quantity`) VALUES
 (31, 'itm005', 368),
 (30, 'itm004', 124),
-(29, 'itm003', 603),
+(29, 'itm003', 598),
 (28, 'itm002', 449),
 (27, 'itm001', 138),
 (38, 'itm010', 297),
-(34, 'itm007', 459),
+(34, 'itm007', 454),
 (39, 'itm005', 241),
 (37, 'itm006', 494),
-(41, 'itm007', 100),
+(41, 'itm007', 95),
 (42, 'itm008', 148);
 
 --
@@ -337,8 +338,9 @@ CREATE TABLE IF NOT EXISTS `inventory_log` (
   `user` varchar(50) DEFAULT NULL,
   `operation` varchar(8) DEFAULT NULL,
   `changed_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=98 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`log_id`),
+  KEY `inventory_log_check` (`log_id`,`inv_id`,`user`,`operation`)
+) ENGINE=MyISAM AUTO_INCREMENT=101 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `inventory_log`
@@ -431,7 +433,10 @@ INSERT INTO `inventory_log` (`log_id`, `inv_id`, `data`, `user`, `operation`, `c
 (94, 41, 'itm007, 100', 'root@localhost', 'INSERT', '2021-07-18 00:33:08'),
 (95, 42, 'itm008, 150', 'root@localhost', 'INSERT', '2021-07-18 00:33:34'),
 (96, 42, 'itm008, 148', 'root@localhost', 'UPDATE', '2021-07-18 01:25:15'),
-(97, 28, 'itm002, 449', 'root@localhost', 'UPDATE', '2021-07-18 01:27:16');
+(97, 28, 'itm002, 449', 'root@localhost', 'UPDATE', '2021-07-18 01:27:16'),
+(98, 29, 'itm003, 598', 'root@localhost', 'UPDATE', '2021-07-18 02:00:43'),
+(99, 34, 'itm007, 454', 'root@localhost', 'UPDATE', '2021-07-19 16:07:56'),
+(100, 41, 'itm007, 95', 'root@localhost', 'UPDATE', '2021-07-19 16:07:56');
 
 -- --------------------------------------------------------
 
@@ -445,7 +450,8 @@ CREATE TABLE IF NOT EXISTS `item` (
   `item_name` varchar(255) DEFAULT NULL,
   `unit_price` float DEFAULT NULL,
   `item_image` blob,
-  PRIMARY KEY (`item_id`)
+  PRIMARY KEY (`item_id`),
+  KEY `item_check` (`item_id`,`item_name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -560,7 +566,8 @@ CREATE TABLE IF NOT EXISTS `item_log` (
   `user` varchar(50) DEFAULT NULL,
   `operation` varchar(8) DEFAULT NULL,
   `changed_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`log_id`)
+  PRIMARY KEY (`log_id`),
+  KEY `item_log_check` (`log_id`,`item_id`,`user`,`operation`)
 ) ENGINE=MyISAM AUTO_INCREMENT=80 DEFAULT CHARSET=latin1;
 
 --
@@ -599,8 +606,9 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `date_and_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`order_id`),
   KEY `user_id` (`user_id`),
-  KEY `item_id` (`item_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
+  KEY `item_id` (`item_id`),
+  KEY `orders_check` (`user_id`,`item_id`,`date_and_time`)
+) ENGINE=MyISAM AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `orders`
@@ -614,7 +622,9 @@ INSERT INTO `orders` (`order_id`, `user_id`, `item_id`, `quantity`, `order_amoun
 (45, 'TG0005', 'itm002', 1, 40, '2021-07-17 07:53:13'),
 (44, 'TG0003', 'itm006', 6, 600, '2021-07-17 07:36:53'),
 (52, 'TG0005', 'itm002', 3, 120, '2021-07-17 19:57:16'),
-(51, 'TG0006', 'itm008', 2, 70, '2021-07-17 19:55:15');
+(53, 'TG0003', 'itm003', 5, 50, '2021-07-17 20:30:43'),
+(51, 'TG0006', 'itm008', 2, 70, '2021-07-17 19:55:15'),
+(54, 'TG0003', 'itm007', 5, 150, '2021-07-19 10:37:56');
 
 --
 -- Triggers `orders`
@@ -707,8 +717,9 @@ CREATE TABLE IF NOT EXISTS `order_log` (
   `user` varchar(50) DEFAULT NULL,
   `operation` varchar(8) DEFAULT NULL,
   `changed_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`log_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=120 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`log_id`),
+  KEY `order_log_check` (`log_id`,`user`,`operation`)
+) ENGINE=MyISAM AUTO_INCREMENT=122 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `order_log`
@@ -831,7 +842,9 @@ INSERT INTO `order_log` (`log_id`, `order_id`, `order_details`, `user`, `operati
 (116, 44, 'TG0003, itm006, 6, 600, 2021-07-17 13:06:53', 'root@localhost', 'UPDATE', '2021-07-18 00:30:48'),
 (117, 51, 'TG0006, itm008, 2, 70, 2021-07-18 01:25:15', 'root@localhost', 'INSERT', '2021-07-18 01:25:15'),
 (118, 52, 'TG0005, itm002, 3, 120, 2021-07-18 01:27:16', 'root@localhost', 'INSERT', '2021-07-18 01:27:16'),
-(119, 43, 'TG0002, itm005, 3, 75, 2021-07-17 12:52:31', 'root@localhost', 'DELETE', '2021-07-18 01:28:17');
+(119, 43, 'TG0002, itm005, 3, 75, 2021-07-17 12:52:31', 'root@localhost', 'DELETE', '2021-07-18 01:28:17'),
+(120, 53, 'TG0003, itm003, 5, 50, 2021-07-18 02:00:43', 'root@localhost', 'INSERT', '2021-07-18 02:00:43'),
+(121, 54, 'TG0003, itm007, 5, 150, 2021-07-19 16:07:56', 'root@localhost', 'INSERT', '2021-07-19 16:07:56');
 
 -- --------------------------------------------------------
 
@@ -859,7 +872,7 @@ CREATE TABLE IF NOT EXISTS `spring_session` (
 --
 
 INSERT INTO `spring_session` (`PRIMARY_ID`, `SESSION_ID`, `CREATION_TIME`, `LAST_ACCESS_TIME`, `MAX_INACTIVE_INTERVAL`, `EXPIRY_TIME`, `PRINCIPAL_NAME`) VALUES
-('670be020-00d6-46f6-a293-a6936440c80c', '2d42c692-742d-446c-91c0-276606b38ba7', 1626553321347, 1626553341933, 1800, 1626555141933, NULL);
+('b60b935f-beed-484b-9ef8-6a57bae6300a', '235b93ec-db02-4ac6-8d05-0a34a45f5ea2', 1626703830754, 1626703838479, 1800, 1626705638479, NULL);
 
 -- --------------------------------------------------------
 
@@ -880,7 +893,7 @@ CREATE TABLE IF NOT EXISTS `spring_session_attributes` (
 --
 
 INSERT INTO `spring_session_attributes` (`SESSION_PRIMARY_ID`, `ATTRIBUTE_NAME`, `ATTRIBUTE_BYTES`) VALUES
-('670be020-00d6-46f6-a293-a6936440c80c', 'SESSION_UID', 0xaced0005737200136a6176612e7574696c2e41727261794c6973747881d21d99c7619d03000149000473697a6578700000000177040000000174000654473030303378);
+('b60b935f-beed-484b-9ef8-6a57bae6300a', 'SESSION_UID', 0xaced0005737200136a6176612e7574696c2e41727261794c6973747881d21d99c7619d03000149000473697a6578700000000177040000000174000654473030303278);
 
 -- --------------------------------------------------------
 
@@ -899,7 +912,8 @@ CREATE TABLE IF NOT EXISTS `transaction` (
   PRIMARY KEY (`transaction_id`),
   KEY `order_id` (`order_id`),
   KEY `user_id` (`user_id`),
-  KEY `item_id` (`item_id`)
+  KEY `item_id` (`item_id`),
+  KEY `transaction_check` (`transaction_id`,`order_id`,`transaction_date`)
 ) ENGINE=MyISAM AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 --
@@ -982,8 +996,9 @@ CREATE TABLE IF NOT EXISTS `transactions_summary` (
   `date` date DEFAULT NULL,
   `total_amount` float DEFAULT NULL,
   `transactions_count` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`id`),
+  KEY `transactions_summary_check` (`date`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transactions_summary`
@@ -994,7 +1009,8 @@ INSERT INTO `transactions_summary` (`id`, `date`, `total_amount`, `transactions_
 (3, '2021-07-05', 0, NULL),
 (4, '2021-07-14', 0, NULL),
 (5, '2021-07-16', 0, NULL),
-(6, '2021-07-17', 1278, 7);
+(6, '2021-07-17', 1278, 7),
+(7, '2021-07-19', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -1010,7 +1026,8 @@ CREATE TABLE IF NOT EXISTS `transaction_log` (
   `user` varchar(50) DEFAULT NULL,
   `operation` varchar(8) DEFAULT NULL,
   `changed_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`log_id`)
+  PRIMARY KEY (`log_id`),
+  KEY `transaction_log_check` (`log_id`,`transaction_id`,`user`,`operation`)
 ) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
@@ -1056,7 +1073,8 @@ CREATE TABLE IF NOT EXISTS `user` (
   `user_contact` int(10) DEFAULT NULL,
   `user_image` blob,
   PRIMARY KEY (`user_id`),
-  UNIQUE KEY `user_email` (`user_email`)
+  UNIQUE KEY `user_email` (`user_email`),
+  KEY `user_check` (`user_id`,`user_name`,`user_email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -1159,7 +1177,8 @@ CREATE TABLE IF NOT EXISTS `user_log` (
   `user` varchar(50) DEFAULT NULL,
   `operation` varchar(8) DEFAULT NULL,
   `changed_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`log_id`)
+  PRIMARY KEY (`log_id`),
+  KEY `user_log_check` (`log_id`,`user`,`operation`)
 ) ENGINE=MyISAM AUTO_INCREMENT=157 DEFAULT CHARSET=latin1;
 
 --
