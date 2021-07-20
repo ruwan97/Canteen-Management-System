@@ -34,12 +34,12 @@ public class User_controller {
 
     //register user
     @PostMapping("/signup")
-    public String registerUser(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("password") String u_password, @RequestParam("role") Integer u_role, @RequestParam("contact") String u_contact, @RequestParam("image") MultipartFile u_image)
-    {
-        user_service.registerUser(u_id, u_name, u_email,u_password, u_role, u_contact, u_image);
+    public String registerUser(@RequestParam("id") String u_id, @RequestParam("name") String u_name, @RequestParam("email") String u_email, @RequestParam("password") String u_password, @RequestParam("role") Integer u_role, @RequestParam("contact") String u_contact, @RequestParam("image") MultipartFile u_image) {
+        user_service.registerUser(u_id, u_name, u_email, u_password, u_role, u_contact, u_image);
 
         return "redirect:/login";
     }
+
 
 
     @RequestMapping("/userdashboard")
